@@ -3,7 +3,7 @@
  * @version: 
  * @Author: letian
  * @Date: 2024-10-29 22:59:50
- * @LastEditTime: 2024-10-30 21:25:01
+ * @LastEditTime: 2024-10-31 23:05:14
  */
 #include <rtthread.h>
 #include <rtdevice.h>
@@ -12,6 +12,7 @@
 
 #include "drv_spi.h"
 #include "spi_flash_sfud.h"
+#include "fal.h"
 
 #ifdef LOG_TAG
 #undef LOG_TAG
@@ -40,6 +41,7 @@ int rt_spi_w25Q128_init(void)
 int main(void)
 {
     rt_spi_w25Q128_init();
+    fal_init();
     while (1)
     {
         rt_thread_mdelay(1000);

@@ -1,0 +1,11 @@
+menu "Custom configuration"
+
+config BSP_USING_ATTR
+    bool "Enable BSP_USING_ATTR"
+    default n
+
+config BSP_USING_MBEDTLS_MANAGE
+    bool "Enable BSP_USING_MBEDTLS_MANAGE"
+    default y
+
+endmenu

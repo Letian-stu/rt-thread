@@ -18,3 +18,5 @@ config PKGS_DIR
 source "$RTT_DIR/Kconfig"
 source "$PKGS_DIR/Kconfig"
 source "$BSP_DIR/drivers/Kconfig"
+
+source "$BSP_DIR/applications/components/Kconfig"

@@ -339,7 +339,7 @@
               <MiscControls>--gnu</MiscControls>
               <Define>__STDC_LIMIT_MACROS, RT_USING_ARMLIBC, USE_STDPERIPH_DRIVER, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, __RTTHREAD__, AT32F403AVGT7</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\components\finsh;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\core_support;..\..\..\libcpu\arm\cortex-m4;..\..\..\components\libc\posix\io\eventfd;..\..\..\components\drivers\include;.;..\..\..\components\libc\posix\io\epoll;applications\components\attr\inc;board;..\..\..\include;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\components\libc\compilers\common\include;applications\components\attr;..\libraries\rt_drivers;..\..\..\components\libc\posix\ipc;..\..\..\components\drivers\spi;..\..\..\libcpu\arm\common;..\..\..\components\drivers\spi\sfud\inc;..\..\..\components\drivers\include;..\..\..\components\utilities\ulog;packages\TaskMsgBus-v3.0.1\inc;..\..\..\components\libc\posix\io\poll;..\libraries\rt_drivers\config;..\..\..\components\drivers\include;..\libraries\usbd_library\inc;applications;..\..\..\components\libc\compilers\common\extension;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\drivers\inc;board\inc</IncludePath>
+              <IncludePath>..\..\..\components\finsh;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\core_support;..\..\..\libcpu\arm\cortex-m4;..\..\..\components\libc\posix\io\eventfd;..\..\..\components\drivers\include;.;..\..\..\components\libc\posix\io\epoll;applications\components\attr\inc;board;..\..\..\include;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\components\libc\compilers\common\include;applications\components\attr;..\libraries\rt_drivers;..\..\..\components\libc\posix\ipc;..\..\..\components\drivers\spi;..\..\..\components\fal\inc;..\..\..\libcpu\arm\common;..\..\..\components\drivers\spi\sfud\inc;..\..\..\components\drivers\include;..\..\..\components\utilities\ulog;packages\TaskMsgBus-v3.0.1\inc;..\..\..\components\libc\posix\io\poll;applications\porting\fal;..\libraries\rt_drivers\config;..\..\..\components\drivers\include;..\libraries\usbd_library\inc;applications;..\..\..\components\libc\compilers\common\extension;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\drivers\inc;board\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1443,6 +1443,36 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Fal</GroupName>
+          <Files>
+            <File>
+              <FileName>fal_partition.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\src\fal_partition.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\src\fal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\src\fal.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal_flash_sfud_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\samples\porting\fal_flash_sfud_port.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal_rtt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\src\fal_rtt.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>Finsh</GroupName>
           <Files>
             <File>
@@ -2369,13 +2399,8 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>lib-attr</GroupName>
+          <GroupName>lib_attr</GroupName>
           <Files>
-            <File>
-              <FileName>attr_mem.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\components\attr\src\attr_mem.c</FilePath>
-            </File>
             <File>
               <FileName>attr.c</FileName>
               <FileType>1</FileType>
@@ -2385,6 +2410,11 @@
               <FileName>demo.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\components\attr\src\demo.c</FilePath>
+            </File>
+            <File>
+              <FileName>attr_mem.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\components\attr\src\attr_mem.c</FilePath>
             </File>
           </Files>
         </Group>

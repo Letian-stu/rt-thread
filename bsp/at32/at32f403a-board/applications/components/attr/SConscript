@@ -6,6 +6,6 @@ src = Glob('./src/*.c')
 path = [cwd]
 path += [cwd + '/inc']
 
-group = DefineGroup('lib-attr', src, depend = [], CPPPATH = path)
+group = DefineGroup('lib_attr', src, depend = [], CPPPATH = path)
 
 Return('group')

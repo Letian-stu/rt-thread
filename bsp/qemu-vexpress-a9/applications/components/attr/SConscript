@@ -1,0 +1,8 @@
+from building import *
+
+src = Glob('./src/*.c')
+CPPPATH = ['inc']
+
+group = DefineGroup('lib-ATTR', src, depend = ['BSP_USING_ATTR'], CPPPATH = CPPPATH)
+
+Return('group')

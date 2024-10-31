@@ -1,0 +1,10 @@
+from building import *
+
+src = Glob('./src/*.c')
+src += Glob('./demo/src/*.c')
+
+CPPPATH = ['inc']
+CPPPATH += ['demo/inc']
+group = DefineGroup('lib-mbedtls-manage', src, depend = ['BSP_USING_MBEDTLS_MANAGE'], CPPPATH = CPPPATH)
+
+Return('group')

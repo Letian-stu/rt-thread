@@ -5,6 +5,11 @@
   "name": "RT_VSNPRINTF_FULL"
  }, 
  {
+  "path": "/packages/system/FlashDB", 
+  "ver": "v2.1.0", 
+  "name": "FLASHDB"
+ }, 
+ {
   "path": "/packages/system/TaskMsgBus", 
   "ver": "v3.0.1", 
   "name": "TASKMSGBUS"

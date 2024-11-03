@@ -223,6 +223,16 @@
 
 /* Micrium: Micrium software products porting for RT-Thread */
 
+#define PKG_USING_FLASHDB
+#define FDB_USING_KVDB
+#define FDB_USING_TSDB
+#define FDB_USING_FAL_MODE
+#define FDB_WRITE_GRAN_32BITS
+#define FDB_WRITE_GRAN 32
+#define FDB_NOT_USING_FILE_MODE
+#define FLASHDB_USING_SAMPLES
+#define PKG_USING_FLASHDB_V20100
+#define PKG_FLASHDB_VER_NUM 0x20100
 #define PKG_USING_TASK_MSG_BUS
 #define TASK_MSG_THREAD_STACK_SIZE 1024
 #define TASK_MSG_THREAD_PRIORITY 5
@@ -302,7 +312,7 @@
 
 /* Hardware Drivers Config */
 
-#define SOC_AT32F403AVGT7
+#define SOC_AT32F403ARGT7
 
 /* Onboard Peripheral Drivers */
 

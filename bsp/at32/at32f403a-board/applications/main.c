@@ -3,7 +3,7 @@
  * @version: 
  * @Author: letian
  * @Date: 2024-10-29 22:59:50
- * @LastEditTime: 2024-10-31 23:05:14
+ * @LastEditTime: 2024-11-03 16:51:00
  */
 #include <rtthread.h>
 #include <rtdevice.h>
@@ -13,6 +13,7 @@
 #include "drv_spi.h"
 #include "spi_flash_sfud.h"
 #include "fal.h"
+#include "flashdb.h"
 
 #ifdef LOG_TAG
 #undef LOG_TAG
@@ -38,10 +39,100 @@ int rt_spi_w25Q128_init(void)
 }
 
 
+static uint32_t boot_count = 0;
+struct fdb_kvdb kvdb = {0};
+struct fdb_tsdb tsdb = {0};
+
+extern void kvdb_basic_sample(fdb_kvdb_t kvdb);
+extern void kvdb_type_string_sample(fdb_kvdb_t kvdb);
+extern void kvdb_type_blob_sample(fdb_kvdb_t kvdb);
+extern void tsdb_sample(fdb_tsdb_t kvdb);
+
+static struct fdb_default_kv_node default_kv_table[] = {
+    {"boot_count", &boot_count, sizeof(boot_count)},
+};
+
+
+static fdb_time_t get_time(void)
+{
+    static int cur_times = 0;
+    cur_times += 1;
+    return cur_times;
+}
+
+int flashdb_init(void)
+{
+		fdb_err_t result = 0;
+#ifdef FDB_USING_KVDB
+    { /* KVDB Sample */
+        struct fdb_default_kv default_kv;
+
+        default_kv.kvs = default_kv_table;
+        default_kv.num = sizeof(default_kv_table) / sizeof(default_kv_table[0]);
+        /* set the lock and unlock function if you want */
+//        fdb_kvdb_control(&kvdb, FDB_KVDB_CTRL_SET_LOCK, lock);
+//        fdb_kvdb_control(&kvdb, FDB_KVDB_CTRL_SET_UNLOCK, unlock);
+        /* Key-Value database initialization
+         *
+         *       &kvdb: database object
+         *       "env": database name
+         * "fdb_kvdb1": The flash partition name base on FAL. Please make sure it's in FAL partition table.
+         *              Please change to YOUR partition name.
+         * &default_kv: The default KV nodes. It will auto add to KVDB when first initialize successfully.
+         *        NULL: The user data if you need, now is empty.
+         */
+        result = fdb_kvdb_init(&kvdb, "env", "fdb_kvdb1", &default_kv, NULL);
+
+        if (result != FDB_NO_ERR) {
+            return -1;
+        }
+
+        /* run basic KV samples */
+        kvdb_basic_sample(&kvdb);
+        /* run string KV samples */
+        kvdb_type_string_sample(&kvdb);
+        /* run blob KV samples */
+        kvdb_type_blob_sample(&kvdb);
+    }
+#endif /* FDB_USING_KVDB */
+
+#ifdef FDB_USING_TSDB
+    { /* TSDB Sample */
+        /* set the lock and unlock function if you want */
+//        fdb_tsdb_control(&tsdb, FDB_TSDB_CTRL_SET_LOCK, lock);
+//        fdb_tsdb_control(&tsdb, FDB_TSDB_CTRL_SET_UNLOCK, unlock);
+        /* Time series database initialization
+         *
+         *       &tsdb: database object
+         *       "log": database name
+         * "fdb_tsdb1": The flash partition name base on FAL. Please make sure it's in FAL partition table.
+         *              Please change to YOUR partition name.
+         *    get_time: The get current timestamp function.
+         *         128: maximum length of each log
+         *        NULL: The user data if you need, now is empty.
+         */
+        result = fdb_tsdb_init(&tsdb, "log", "fdb_tsdb1", get_time, 128, NULL);
+        /* read last saved time for simulated timestamp */
+        uint32_t counts = 0;
+        fdb_tsdb_control(&tsdb, FDB_TSDB_CTRL_GET_LAST_TIME, &counts);
+        LOG_I("rt fdb get last time %d", counts);
+			
+        if (result != FDB_NO_ERR) {
+            return -1;
+        }
+
+        /* run TSDB sample */
+        tsdb_sample(&tsdb);
+    }
+#endif /* FDB_USING_TSDB */
+}
+
 int main(void)
 {
     rt_spi_w25Q128_init();
     fal_init();
+    flashdb_init();
+		
     while (1)
     {
         rt_thread_mdelay(1000);

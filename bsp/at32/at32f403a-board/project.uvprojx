@@ -337,9 +337,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--gnu</MiscControls>
-              <Define>__STDC_LIMIT_MACROS, RT_USING_ARMLIBC, USE_STDPERIPH_DRIVER, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, __RTTHREAD__, AT32F403AVGT7</Define>
+              <Define>__STDC_LIMIT_MACROS, RT_USING_ARMLIBC, USE_STDPERIPH_DRIVER, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, AT32F403ARGT7, __RTTHREAD__</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\components\finsh;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\core_support;..\..\..\libcpu\arm\cortex-m4;..\..\..\components\libc\posix\io\eventfd;..\..\..\components\drivers\include;.;..\..\..\components\libc\posix\io\epoll;applications\components\attr\inc;board;..\..\..\include;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\components\libc\compilers\common\include;applications\components\attr;..\libraries\rt_drivers;..\..\..\components\libc\posix\ipc;..\..\..\components\drivers\spi;..\..\..\components\fal\inc;..\..\..\libcpu\arm\common;..\..\..\components\drivers\spi\sfud\inc;..\..\..\components\drivers\include;..\..\..\components\utilities\ulog;packages\TaskMsgBus-v3.0.1\inc;..\..\..\components\libc\posix\io\poll;applications\porting\fal;..\libraries\rt_drivers\config;..\..\..\components\drivers\include;..\libraries\usbd_library\inc;applications;..\..\..\components\libc\compilers\common\extension;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\drivers\inc;board\inc</IncludePath>
+              <IncludePath>..\..\..\components\finsh;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support;packages\FlashDB-v2.1.0\inc;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\core_support;..\..\..\libcpu\arm\cortex-m4;..\..\..\components\libc\posix\io\eventfd;..\..\..\components\drivers\include;.;..\..\..\components\libc\posix\io\epoll;applications\components\attr\inc;board;..\..\..\include;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\components\libc\compilers\common\include;applications\components\attr;..\libraries\rt_drivers;..\..\..\components\libc\posix\ipc;..\..\..\components\drivers\spi;..\..\..\components\fal\inc;..\..\..\libcpu\arm\common;..\..\..\components\drivers\spi\sfud\inc;..\..\..\components\drivers\include;..\..\..\components\utilities\ulog;packages\TaskMsgBus-v3.0.1\inc;..\..\..\components\libc\posix\io\poll;applications\porting\fal;..\libraries\rt_drivers\config;..\..\..\components\drivers\include;..\libraries\usbd_library\inc;applications;..\..\..\components\libc\compilers\common\extension;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\drivers\inc;board\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1446,14 +1446,14 @@
           <GroupName>Fal</GroupName>
           <Files>
             <File>
-              <FileName>fal_partition.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fal\src\fal_partition.c</FilePath>
-            </File>
-            <File>
               <FileName>fal_flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\fal\src\fal_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal_partition.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\src\fal_partition.c</FilePath>
             </File>
             <File>
               <FileName>fal.c</FileName>
@@ -1494,6 +1494,61 @@
               <FileName>cmd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\finsh\cmd.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FlashDB</GroupName>
+          <Files>
+            <File>
+              <FileName>fdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_kvdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_kvdb.c</FilePath>
+            </File>
+            <File>
+              <FileName>kvdb_basic_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\samples\kvdb_basic_sample.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_utils.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_utils.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_file.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_file.c</FilePath>
+            </File>
+            <File>
+              <FileName>kvdb_type_blob_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\samples\kvdb_type_blob_sample.c</FilePath>
+            </File>
+            <File>
+              <FileName>kvdb_type_string_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\samples\kvdb_type_string_sample.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_tsdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_tsdb.c</FilePath>
+            </File>
+            <File>
+              <FileName>tsdb_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\samples\tsdb_sample.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb_cmd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_cmd.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2402,14 +2457,14 @@
           <GroupName>lib_attr</GroupName>
           <Files>
             <File>
-              <FileName>attr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\components\attr\src\attr.c</FilePath>
-            </File>
-            <File>
               <FileName>demo.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\components\attr\src\demo.c</FilePath>
+            </File>
+            <File>
+              <FileName>attr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\components\attr\src\attr.c</FilePath>
             </File>
             <File>
               <FileName>attr_mem.c</FileName>
@@ -2607,14 +2662,14 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>ulog.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\utilities\ulog\ulog.c</FilePath>
-            </File>
-            <File>
               <FileName>console_be.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\utilities\ulog\backend\console_be.c</FilePath>
+            </File>
+            <File>
+              <FileName>ulog.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\utilities\ulog\ulog.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -45,8 +45,13 @@ https://club.rt-thread.org/ask/article/2460fcd7db4821ae.html
 
 https://blog.csdn.net/lengyuefeng212/article/details/113848520
 
+3.添加mtd nor设备
 
+https://blog.csdn.net/weixin_46158019/article/details/143258002
 
+4.添加fal 块设备
+注意mtd设备和块设备的区别
+https://club.rt-thread.org/ask/article/4101a9965b5058c4.html
 
 
 

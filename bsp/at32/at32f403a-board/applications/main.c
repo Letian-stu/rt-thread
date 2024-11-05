@@ -3,7 +3,7 @@
  * @version: 
  * @Author: letian
  * @Date: 2024-10-29 22:59:50
- * @LastEditTime: 2024-11-03 16:51:00
+ * @LastEditTime: 2024-11-05 23:09:07
  */
 #include <rtthread.h>
 #include <rtdevice.h>
@@ -14,7 +14,8 @@
 #include "spi_flash_sfud.h"
 #include "fal.h"
 #include "flashdb.h"
-
+#include "dfs_fs.h"
+ 
 #ifdef LOG_TAG
 #undef LOG_TAG
 #define LOG_TAG "main"
@@ -38,6 +39,36 @@ int rt_spi_w25Q128_init(void)
     }
 }
 
+#define FS_PARTITION_NAME "fs"
+
+int dfs_mount_init(void)
+{
+    struct rt_device *blk_dev = RT_NULL;
+    blk_dev = fal_blk_device_create(FS_PARTITION_NAME);
+    if (!blk_dev)
+    {
+        LOG_E("Can't create a mtd device on '%s' partition.", FS_PARTITION_NAME);
+    }
+    else
+    {
+        if (dfs_mount(FS_PARTITION_NAME, "/", "elm",0,0) == 0)
+        {
+            LOG_I("Filesystem initialized!");
+        }
+        else
+        {
+            dfs_mkfs("elm", FS_PARTITION_NAME);
+            if (dfs_mount(FS_PARTITION_NAME, "/", "elm", 0, 0) == 0)
+            {
+                LOG_I("Filesystem initialized!");
+            }
+            else
+            {
+                LOG_E("Failed to initialize filesystem!");
+            }
+        }
+    }
+}
 
 static uint32_t boot_count = 0;
 struct fdb_kvdb kvdb = {0};
@@ -115,8 +146,7 @@ int flashdb_init(void)
         /* read last saved time for simulated timestamp */
         uint32_t counts = 0;
         fdb_tsdb_control(&tsdb, FDB_TSDB_CTRL_GET_LAST_TIME, &counts);
-        LOG_I("rt fdb get last time %d", counts);
-			
+
         if (result != FDB_NO_ERR) {
             return -1;
         }
@@ -132,7 +162,7 @@ int main(void)
     rt_spi_w25Q128_init();
     fal_init();
     flashdb_init();
-		
+		dfs_mount_init();	
     while (1)
     {
         rt_thread_mdelay(1000);

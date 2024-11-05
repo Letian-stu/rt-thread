@@ -14,6 +14,7 @@
 #include <rtconfig.h>
 #include <board.h>
 
+#define ONCHIP_FLASH_DEV_NAME          "onchip_flash"
 #define NOR_FLASH_DEV_NAME             "w25q64"
 
 #define FAL_ONCHIP_START_ADDR_APP           0
@@ -32,7 +33,7 @@
 #define FAL_NORFLASH_START_ADDR_OTA         FAL_NORFLASH_START_ADDR_FLASHDB + FAL_NORFLASH_MAX_LEN_FLASHDB
 #define FAL_NORFLASH_MAX_LEN_OTA            (1024*1024)
 #define FAL_NORFLASH_START_ADDR_FS          FAL_NORFLASH_START_ADDR_OTA + FAL_NORFLASH_MAX_LEN_OTA
-#define FAL_NORFLASH_MAX_LEN_FS             (6*1024*1024)
+#define FAL_NORFLASH_MAX_LEN_FS             (2*1024*1024)
 /* ===================== Flash device Configuration ========================= */
 
 extern const struct fal_flash_dev at32_onchip_flash;
@@ -49,14 +50,14 @@ extern struct fal_flash_dev nor_flash0;
 /* partition table */
 #define FAL_PART_TABLE                                                               \
 {      																				 \
-    {FAL_PART_MAGIC_WROD,       "app",     "onchip_flash",          FAL_ONCHIP_START_ADDR_APP,          FAL_ONCHIP_MAX_LEN_APP, 0}, \
-    {FAL_PART_MAGIC_WROD,     "boot1",     "onchip_flash",        FAL_ONCHIP_START_ADDR_BOOT1,        FAL_ONCHIP_MAX_LEN_BOOT1, 0}, \
-    {FAL_PART_MAGIC_WROD,     "boot2",     "onchip_flash",        FAL_ONCHIP_START_ADDR_BOOT2,        FAL_ONCHIP_MAX_LEN_BOOT2, 0}, \
-    {FAL_PART_MAGIC_WROD, "fdb_kvdb1",     "onchip_flash",            FAL_ONCHIP_START_ADDR_KVDB,      FAL_ONCHIP_MAX_LEN_KVDB, 0}, \
-    {FAL_PART_MAGIC_WROD, "fdb_tsdb1",     "onchip_flash",                FAL_ONCHIP_START_ADDR_TSDB,  FAL_ONCHIP_MAX_LEN_TSDB, 0}, \
-    {FAL_PART_MAGIC_WORD,  "flashdb2", NOR_FLASH_DEV_NAME,    FAL_NORFLASH_START_ADDR_FLASHDB,    FAL_NORFLASH_MAX_LEN_FLASHDB, 0}, \
-    {FAL_PART_MAGIC_WORD,       "ota", NOR_FLASH_DEV_NAME,        FAL_NORFLASH_START_ADDR_OTA,        FAL_NORFLASH_MAX_LEN_OTA, 0}, \
-    {FAL_PART_MAGIC_WORD,        "fs", NOR_FLASH_DEV_NAME,         FAL_NORFLASH_START_ADDR_FS,         FAL_NORFLASH_MAX_LEN_FS, 0}, \
+    {FAL_PART_MAGIC_WROD,       "app",      ONCHIP_FLASH_DEV_NAME,          FAL_ONCHIP_START_ADDR_APP,          FAL_ONCHIP_MAX_LEN_APP, 0}, \
+    {FAL_PART_MAGIC_WROD,     "boot1",      ONCHIP_FLASH_DEV_NAME,        FAL_ONCHIP_START_ADDR_BOOT1,        FAL_ONCHIP_MAX_LEN_BOOT1, 0}, \
+    {FAL_PART_MAGIC_WROD,     "boot2",      ONCHIP_FLASH_DEV_NAME,        FAL_ONCHIP_START_ADDR_BOOT2,        FAL_ONCHIP_MAX_LEN_BOOT2, 0}, \
+    {FAL_PART_MAGIC_WROD, "fdb_kvdb1",      ONCHIP_FLASH_DEV_NAME,         FAL_ONCHIP_START_ADDR_KVDB,         FAL_ONCHIP_MAX_LEN_KVDB, 0}, \
+    {FAL_PART_MAGIC_WROD, "fdb_tsdb1",      ONCHIP_FLASH_DEV_NAME,         FAL_ONCHIP_START_ADDR_TSDB,         FAL_ONCHIP_MAX_LEN_TSDB, 0}, \
+    {FAL_PART_MAGIC_WORD,  "flashdb2",         NOR_FLASH_DEV_NAME,    FAL_NORFLASH_START_ADDR_FLASHDB,    FAL_NORFLASH_MAX_LEN_FLASHDB, 0}, \
+    {FAL_PART_MAGIC_WORD,       "ota",         NOR_FLASH_DEV_NAME,        FAL_NORFLASH_START_ADDR_OTA,        FAL_NORFLASH_MAX_LEN_OTA, 0}, \
+    {FAL_PART_MAGIC_WORD,        "fs",         NOR_FLASH_DEV_NAME,         FAL_NORFLASH_START_ADDR_FS,         FAL_NORFLASH_MAX_LEN_FS, 0}, \
 }
 #endif /* FAL_PART_HAS_TABLE_CFG */
 

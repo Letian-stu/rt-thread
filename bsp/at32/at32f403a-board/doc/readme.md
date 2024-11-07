@@ -53,6 +53,9 @@ https://blog.csdn.net/weixin_46158019/article/details/143258002
 注意mtd设备和块设备的区别
 https://club.rt-thread.org/ask/article/4101a9965b5058c4.html
 
+5.qboot
+https://blog.csdn.net/qq_25186745/article/details/129417101
 
+qboot和app都应该同时开关syswatch
 
 ## 其他

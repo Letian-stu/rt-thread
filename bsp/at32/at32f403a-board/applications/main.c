@@ -3,7 +3,7 @@
  * @version: 
  * @Author: letian
  * @Date: 2024-10-29 22:59:50
- * @LastEditTime: 2024-11-05 23:09:07
+ * @LastEditTime: 2024-11-07 22:35:52
  */
 #include <rtthread.h>
 #include <rtdevice.h>
@@ -22,7 +22,19 @@
 #endif
 #define LOG_LVL     LOG_LVL_DBG   
 
-       
+#include "at32f403a_407.h"
+
+static int ota_app_vtor_reconfig(void)
+{
+    #define RT_APP_PORT_ADDR 0x08040000
+    #define NVIC_VTOR_MASK 0xFFFFFF80
+
+    SCB->VTOR = RT_APP_PORT_ADDR;
+    return 0;
+}
+INIT_BOARD_EXPORT(ota_app_vtor_reconfig);
+
+
 int rt_spi_w25Q128_init(void)
 {
     /* 向系统注册SPI1总线上spi10从设备 */
@@ -38,37 +50,13 @@ int rt_spi_w25Q128_init(void)
         return -RT_ERROR;
     }
 }
+INIT_DEVICE_EXPORT(rt_spi_w25Q128_init);
 
-#define FS_PARTITION_NAME "fs"
-
-int dfs_mount_init(void)
+int rt_fal_init(void)
 {
-    struct rt_device *blk_dev = RT_NULL;
-    blk_dev = fal_blk_device_create(FS_PARTITION_NAME);
-    if (!blk_dev)
-    {
-        LOG_E("Can't create a mtd device on '%s' partition.", FS_PARTITION_NAME);
-    }
-    else
-    {
-        if (dfs_mount(FS_PARTITION_NAME, "/", "elm",0,0) == 0)
-        {
-            LOG_I("Filesystem initialized!");
-        }
-        else
-        {
-            dfs_mkfs("elm", FS_PARTITION_NAME);
-            if (dfs_mount(FS_PARTITION_NAME, "/", "elm", 0, 0) == 0)
-            {
-                LOG_I("Filesystem initialized!");
-            }
-            else
-            {
-                LOG_E("Failed to initialize filesystem!");
-            }
-        }
-    }
+	fal_init(); 	
 }
+INIT_COMPONENT_EXPORT(rt_fal_init);
 
 static uint32_t boot_count = 0;
 struct fdb_kvdb kvdb = {0};
@@ -82,7 +70,6 @@ extern void tsdb_sample(fdb_tsdb_t kvdb);
 static struct fdb_default_kv_node default_kv_table[] = {
     {"boot_count", &boot_count, sizeof(boot_count)},
 };
-
 
 static fdb_time_t get_time(void)
 {
@@ -156,13 +143,43 @@ int flashdb_init(void)
     }
 #endif /* FDB_USING_TSDB */
 }
+INIT_ENV_EXPORT(flashdb_init);
+
+
+#define FS_PARTITION_NAME "fs"
+
+int dfs_mount_init(void)
+{
+    struct rt_device *blk_dev = RT_NULL;
+    blk_dev = fal_blk_device_create(FS_PARTITION_NAME);
+    if (!blk_dev)
+    {
+        LOG_E("Can't create a mtd device on '%s' partition.", FS_PARTITION_NAME);
+    }
+    else
+    {
+        if (dfs_mount(FS_PARTITION_NAME, "/", "elm",0,0) == 0)
+        {
+            LOG_I("Filesystem initialized!");
+        }
+        else
+        {
+            dfs_mkfs("elm", FS_PARTITION_NAME);
+            if (dfs_mount(FS_PARTITION_NAME, "/", "elm", 0, 0) == 0)
+            {
+                LOG_I("Filesystem initialized!");
+            }
+            else
+            {
+                LOG_E("Failed to initialize filesystem!");
+            }
+        }
+    }
+}
+INIT_ENV_EXPORT(dfs_mount_init);
 
 int main(void)
 {
-    rt_spi_w25Q128_init();
-    fal_init();
-    flashdb_init();
-		dfs_mount_init();	
     while (1)
     {
         rt_thread_mdelay(1000);

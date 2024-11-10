@@ -178,8 +178,17 @@ int dfs_mount_init(void)
 }
 INIT_ENV_EXPORT(dfs_mount_init);
 
+void show_version(void)
+{
+	#define HARDWAREVERSION "V1.0.0"
+	#define SOFTWAREVERSION "V1.0.0"
+	LOG_I("Hard Version %s", HARDWAREVERSION);
+	LOG_I("Soft Version %s", SOFTWAREVERSION);
+}
+
 int main(void)
 {
+		show_version();
     while (1)
     {
         rt_thread_mdelay(1000);

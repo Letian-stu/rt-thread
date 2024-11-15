@@ -54,6 +54,8 @@ INIT_DEVICE_EXPORT(rt_spi_w25Q128_init);
 
 int rt_fal_init(void)
 {
+	LCD_Init();
+	
 	fal_init(); 	
 }
 INIT_COMPONENT_EXPORT(rt_fal_init);

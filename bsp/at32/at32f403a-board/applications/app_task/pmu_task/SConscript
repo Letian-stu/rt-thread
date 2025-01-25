@@ -1,0 +1,11 @@
+from building import *
+
+cwd = GetCurrentDir()
+
+src = Glob('./src/*.c')
+path = [cwd]
+path += [cwd + '/inc']
+
+group = DefineGroup('pmu_task', src, depend = [], CPPPATH = path)
+
+Return('group')

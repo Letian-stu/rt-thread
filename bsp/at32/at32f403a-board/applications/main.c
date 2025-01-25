@@ -3,7 +3,7 @@
  * @version: 
  * @Author: letian
  * @Date: 2024-10-29 22:59:50
- * @LastEditTime: 2024-11-07 22:35:52
+ * @LastEditTime: 2025-01-25 14:51:22
  */
 #include <rtthread.h>
 #include <rtdevice.h>
@@ -54,9 +54,8 @@ INIT_DEVICE_EXPORT(rt_spi_w25Q128_init);
 
 int rt_fal_init(void)
 {
-	LCD_Init();
-	
-	fal_init(); 	
+	fal_init(); 
+	return 0;	
 }
 INIT_COMPONENT_EXPORT(rt_fal_init);
 
@@ -82,7 +81,7 @@ static fdb_time_t get_time(void)
 
 int flashdb_init(void)
 {
-		fdb_err_t result = 0;
+	fdb_err_t result = 0;
 #ifdef FDB_USING_KVDB
     { /* KVDB Sample */
         struct fdb_default_kv default_kv;
@@ -144,6 +143,7 @@ int flashdb_init(void)
         tsdb_sample(&tsdb);
     }
 #endif /* FDB_USING_TSDB */
+	return result;
 }
 INIT_ENV_EXPORT(flashdb_init);
 
@@ -177,6 +177,7 @@ int dfs_mount_init(void)
             }
         }
     }
+	return 0;
 }
 INIT_ENV_EXPORT(dfs_mount_init);
 
@@ -188,11 +189,29 @@ void show_version(void)
 	LOG_I("Soft Version %s", SOFTWAREVERSION);
 }
 
+#include "pmu_task.h"
+#include "pmu_task_manage.h"
+#include "task_msg_bus.h"
+#include "msg_bus_interface.h"
+
 int main(void)
 {
-		show_version();
+	show_version();
+    PmuTaskCreate(&g_pmu_task);
+	rt_uint32_t tick = 0;
     while (1)
     {
+		if(tick == 10)
+		{	
+			task_msg_publish(MSG_BUS_EVENT_RUN1S, RT_NULL);
+		}
+		if(tick == 20)
+		{
+			uint8_t msg_data[8] = {0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77};
+			task_msg_publish_obj(MSG_BUS_EVENT_DATA_TRANS, &msg_data, sizeof(msg_data));
+		}
+		tick++;
+        PmuTaskRunOnce();
         rt_thread_mdelay(1000);
     }
 }

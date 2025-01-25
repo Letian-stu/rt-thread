@@ -1,27 +1,17 @@
 [
  {
-  "path": "/packages/multimedia/LVGL/LVGL", 
-  "ver": "v8.3.11", 
-  "name": "LVGL"
- }, 
+  "name": "RT_VSNPRINTF_FULL",
+  "path": "/packages/system/enhanced-kservice/rt_vsnprintf_full",
+  "ver": "latest"
+ },
  {
-  "path": "/packages/system/enhanced-kservice/rt_vsnprintf_full", 
-  "ver": "latest", 
-  "name": "RT_VSNPRINTF_FULL"
- }, 
+  "name": "FLASHDB",
+  "path": "/packages/system/FlashDB",
+  "ver": "v2.1.0"
+ },
  {
-  "path": "/packages/system/FlashDB", 
-  "ver": "v2.1.0", 
-  "name": "FLASHDB"
- }, 
- {
-  "path": "/packages/system/TaskMsgBus", 
-  "ver": "v3.0.1", 
-  "name": "TASKMSGBUS"
- }, 
- {
-  "path": "/packages/peripherals/gc9a01", 
-  "ver": "latest", 
-  "name": "GC9A01"
+  "name": "TASKMSGBUS",
+  "path": "/packages/system/TaskMsgBus",
+  "ver": "v3.0.1"
  }
 ]

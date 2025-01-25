@@ -570,7 +570,7 @@ static void scheduled_timeout_callback(void *params)
  */
 rt_err_t task_msg_scheduled_restart(enum task_msg_name msg_name)
 {
-    rt_mb_send(&msg_mb, (rt_ubase_t) msg_name);
+    return rt_mb_send(&msg_mb, (rt_ubase_t) msg_name);
 }
 /**
  * Start a schedule message, if it has not been added before, a message without parameters will be automatically added

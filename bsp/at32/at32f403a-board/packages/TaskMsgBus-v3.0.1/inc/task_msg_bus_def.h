@@ -19,12 +19,13 @@
 #endif
 #endif
 #else
-enum task_msg_name
-{
-    TASK_MSG_OS_REDAY = 0,
-    TASK_MSG_NET_REDAY,
-    TASK_MSG_COUNT
-};
+#include "msg_bus_interface.h"
+//enum task_msg_name
+//{
+//    TASK_MSG_OS_REDAY = 0,
+//    TASK_MSG_NET_REDAY,
+//    TASK_MSG_COUNT
+//};
 #ifdef TASK_MSG_USING_DYNAMIC_MEMORY
 #define task_msg_dup_release_hooks {                    \
                 {TASK_MSG_OS_REDAY, RT_NULL, RT_NULL},   \

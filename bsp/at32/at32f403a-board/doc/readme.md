@@ -58,4 +58,8 @@ https://blog.csdn.net/qq_25186745/article/details/129417101
 
 qboot和app都应该同时开关syswatch
 
+6.can
+pb89 can1
+pb56 can2
+
 ## 其他

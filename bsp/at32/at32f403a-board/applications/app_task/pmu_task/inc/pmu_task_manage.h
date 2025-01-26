@@ -4,7 +4,7 @@
 #include <rtthread.h>
 
 #define PMU_MAX_TASKS_NUM   (10)
-#define PNU_ARRAY_LEN(arr)  (sizeof(arr) / sizeof((arr)[0]))
+#define PMU_ARRAY_LEN(arr)  (sizeof(arr) / sizeof((arr)[0]))
 
 enum{
     PMU_TASK_ID_COMPONENT = 0,

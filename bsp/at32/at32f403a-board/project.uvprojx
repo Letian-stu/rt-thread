@@ -329,9 +329,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--gnu</MiscControls>
-              <Define>AT32F403ARGT7, __RTTHREAD__, USE_STDPERIPH_DRIVER, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, RT_USING_ARMLIBC, __STDC_LIMIT_MACROS</Define>
+              <Define>__RTTHREAD__, RT_USING_ARMLIBC, RT_USING_LIBC, USE_STDPERIPH_DRIVER, AT32F403ARGT7, __STDC_LIMIT_MACROS, __CLK_TCK=RT_TICK_PER_SECOND</Define>
               <Undefine />
-              <IncludePath>..\..\..\components\drivers\include;applications\app_task\pmu_task\inc;..\..\..\components\libc\posix\io\epoll;..\..\..\libcpu\arm\common;applications\app_task\pmu_task;applications\app_task\can_task;applications\porting\fal;applications\app_task\tsp_task;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\core_support;applications\components\attr\inc;..\..\..\components\drivers\include;board\inc;board;..\..\..\components\drivers\include;.;..\..\..\components\utilities\ulog;..\..\..\libcpu\arm\cortex-m4;..\..\..\components\drivers\include;..\..\..\components\utilities\ulog\backend;..\..\..\components\drivers\spi\sfud\inc;..\..\..\components\drivers\spi;applications\app_task\tsp_task\inc;..\libraries\usbd_library\inc;..\..\..\components\finsh;..\..\..\components\dfs\dfs_v1\filesystems\elmfat;applications;..\..\..\components\libc\posix\ipc;..\libraries\rt_drivers\config;..\..\..\components\dfs\dfs_v1\include;..\..\..\components\libc\posix\io\poll;..\libraries\rt_drivers;applications\components\attr;applications\app_task\comp_task\inc;..\..\..\components\libc\compilers\common\extension;..\..\..\components\libc\posix\io\eventfd;..\..\..\components\libc\compilers\common\extension\fcntl\octal;applications\app_task\comp_task;packages\FlashDB-v2.1.0\inc;..\libraries\AT32F403A_407_Firmware_Library\drivers\inc;..\..\..\components\drivers\include;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support;applications\app_task\can_task\inc;..\..\..\components\drivers\include;..\..\..\components\libc\posix\io\stdio;..\..\..\components\libc\compilers\common\include;..\..\..\components\fal\inc;..\..\..\include;..\..\..\components\dfs\dfs_v1\filesystems\devfs;packages\TaskMsgBus-v3.0.1\inc</IncludePath>
+              <IncludePath>..\..\..\components\fal\inc;..\..\..\include;..\..\..\components\libc\compilers\common\include;..\..\..\components\libc\posix\io\eventfd;..\..\..\components\libc\posix\io\stdio;..\..\..\components\utilities\ulog\backend;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\core_support;..\..\..\components\libc\posix\io\poll;..\..\..\components\utilities\ulog;..\libraries\AT32F403A_407_Firmware_Library\drivers\inc;..\..\..\components\libc\compilers\common\extension;..\libraries\rt_drivers\config;applications\app_task\demo_cmd;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\libc\posix\ipc;applications\app_task\comp_task;..\..\..\components\drivers\include;..\..\..\libcpu\arm\cortex-m4;.;board\inc;applications\app_task\tsp_task\inc;packages\TaskMsgBus-v3.0.1\inc;packages\FlashDB-v2.1.0\inc;applications\components\attr;applications\app_task\tsp_task;..\..\..\components\drivers\include;..\..\..\components\drivers\spi;..\..\..\components\drivers\include;..\libraries\rt_drivers;..\..\..\components\drivers\spi\sfud\inc;applications\app_task\can_task\inc;applications\app_task\pmu_task\inc;..\..\..\components\libc\posix\io\epoll;applications\app_task\can_task;..\..\..\components\dfs\dfs_v1\filesystems\devfs;applications\porting\fal;..\..\..\libcpu\arm\common;applications;..\..\..\components\dfs\dfs_v1\include;..\..\..\components\dfs\dfs_v1\filesystems\elmfat;board;applications\app_task\demo_cmd\inc;..\..\..\components\libc\compilers\common\extension\fcntl\octal;applications\app_task\pmu_task;applications\app_task\comp_task\inc;..\..\..\components\finsh;..\..\..\components\drivers\include;..\libraries\usbd_library\inc;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support;applications\components\attr\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -386,6 +386,13 @@
           <GroupName>can_task</GroupName>
           <Files>
             <File>
+              <FileName>can_interface.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\app_task\can_task\src\can_interface.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
               <FileName>can_task.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\app_task\can_task\src\can_task.c</FilePath>
@@ -396,16 +403,16 @@
           <GroupName>comp_task</GroupName>
           <Files>
             <File>
-              <FileName>component_task.c</FileName>
+              <FileName>msg_bus_interface.c</FileName>
               <FileType>1</FileType>
-              <FilePath>applications\app_task\comp_task\src\component_task.c</FilePath>
+              <FilePath>applications\app_task\comp_task\src\msg_bus_interface.c</FilePath>
             </File>
           </Files>
           <Files>
             <File>
-              <FileName>msg_bus_interface.c</FileName>
+              <FileName>component_task.c</FileName>
               <FileType>1</FileType>
-              <FilePath>applications\app_task\comp_task\src\msg_bus_interface.c</FilePath>
+              <FilePath>applications\app_task\comp_task\src\component_task.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -469,7 +476,36 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>demo_cmd</GroupName>
+          <Files>
+            <File>
+              <FileName>can_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\app_task\demo_cmd\can_sample.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>DeviceDrivers</GroupName>
+          <Files>
+            <File>
+              <FileName>can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\drivers\can\can.c</FilePath>
+              <FileOption>
+                <FileArmAds>
+                  <Cads>
+                    <VariousControls>
+                      <MiscControls>  --c99</MiscControls>
+                      <Define>__RT_IPC_SOURCE__</Define>
+                      <Undefine> </Undefine>
+                      <IncludePath> </IncludePath>
+                    </VariousControls>
+                  </Cads>
+                </FileArmAds>
+              </FileOption>
+            </File>
+          </Files>
           <Files>
             <File>
               <FileName>device.c</FileName>
@@ -819,6 +855,13 @@
           </Files>
           <Files>
             <File>
+              <FileName>drv_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\rt_drivers\drv_can.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
               <FileName>drv_common.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\libraries\rt_drivers\drv_common.c</FilePath>
@@ -864,9 +907,23 @@
           <GroupName>Fal</GroupName>
           <Files>
             <File>
+              <FileName>fal_flash_sfud_port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\samples\porting\fal_flash_sfud_port.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
               <FileName>fal.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\fal\src\fal.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>fal_partition.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\src\fal_partition.c</FilePath>
             </File>
           </Files>
           <Files>
@@ -881,20 +938,6 @@
               <FileName>fal_rtt.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\fal\src\fal_rtt.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>fal_flash_sfud_port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fal\samples\porting\fal_flash_sfud_port.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>fal_partition.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fal\src\fal_partition.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -961,20 +1004,6 @@
           <GroupName>Finsh</GroupName>
           <Files>
             <File>
-              <FileName>msh_file.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\finsh\msh_file.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>msh.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\finsh\msh.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
               <FileName>shell.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\finsh\shell.c</FilePath>
@@ -982,9 +1011,23 @@
           </Files>
           <Files>
             <File>
+              <FileName>msh_file.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\finsh\msh_file.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
               <FileName>msh_parse.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\finsh\msh_parse.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>msh.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\finsh\msh.c</FilePath>
             </File>
           </Files>
           <Files>
@@ -999,30 +1042,9 @@
           <GroupName>FlashDB</GroupName>
           <Files>
             <File>
-              <FileName>fdb_file.c</FileName>
+              <FileName>fdb_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\src\fdb_file.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>kvdb_basic_sample.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\samples\kvdb_basic_sample.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>tsdb_sample.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\samples\tsdb_sample.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>fdb_kvdb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\src\fdb_kvdb.c</FilePath>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_utils.c</FilePath>
             </File>
           </Files>
           <Files>
@@ -1034,16 +1056,16 @@
           </Files>
           <Files>
             <File>
-              <FileName>fdb.c</FileName>
+              <FileName>fdb_cmd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\src\fdb.c</FilePath>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_cmd.c</FilePath>
             </File>
           </Files>
           <Files>
             <File>
-              <FileName>fdb_cmd.c</FileName>
+              <FileName>fdb_kvdb.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\src\fdb_cmd.c</FilePath>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_kvdb.c</FilePath>
             </File>
           </Files>
           <Files>
@@ -1055,16 +1077,37 @@
           </Files>
           <Files>
             <File>
-              <FileName>fdb_tsdb.c</FileName>
+              <FileName>fdb_file.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\src\fdb_tsdb.c</FilePath>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_file.c</FilePath>
             </File>
           </Files>
           <Files>
             <File>
-              <FileName>fdb_utils.c</FileName>
+              <FileName>tsdb_sample.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\src\fdb_utils.c</FilePath>
+              <FilePath>packages\FlashDB-v2.1.0\samples\tsdb_sample.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>kvdb_basic_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\samples\kvdb_basic_sample.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>fdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>fdb_tsdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_tsdb.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1379,13 +1422,6 @@
           <GroupName>lib_attr</GroupName>
           <Files>
             <File>
-              <FileName>demo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\components\attr\src\demo.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
               <FileName>attr_mem.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\components\attr\src\attr_mem.c</FilePath>
@@ -1396,6 +1432,13 @@
               <FileName>attr.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\components\attr\src\attr.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>demo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\components\attr\src\demo.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1441,9 +1484,44 @@
           <GroupName>Libraries</GroupName>
           <Files>
             <File>
-              <FileName>at32f403a_407_can.c</FileName>
+              <FileName>at32f403a_407_emac.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_can.c</FilePath>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_emac.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>at32f403a_407_exint.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_exint.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>at32f403a_407_bpr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_bpr.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>at32f403a_407_wwdt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_wwdt.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>at32f403a_407_xmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_xmc.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>at32f403a_407_tmr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_tmr.c</FilePath>
             </File>
           </Files>
           <Files>
@@ -1455,13 +1533,6 @@
           </Files>
           <Files>
             <File>
-              <FileName>at32f403a_407_sdio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_sdio.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
               <FileName>at32f403a_407_gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_gpio.c</FilePath>
@@ -1469,9 +1540,37 @@
           </Files>
           <Files>
             <File>
-              <FileName>at32f403a_407_dac.c</FileName>
+              <FileName>at32f403a_407_flash.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_dac.c</FilePath>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_flash.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>system_at32f403a_407.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support\system_at32f403a_407.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>at32f403a_407_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_adc.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>at32f403a_407_misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_misc.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>at32f403a_407_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_can.c</FilePath>
             </File>
           </Files>
           <Files>
@@ -1483,16 +1582,9 @@
           </Files>
           <Files>
             <File>
-              <FileName>at32f403a_407_usb.c</FileName>
+              <FileName>at32f403a_407_dac.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_usb.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>at32f403a_407_wdt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_wdt.c</FilePath>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_dac.c</FilePath>
             </File>
           </Files>
           <Files>
@@ -1511,30 +1603,9 @@
           </Files>
           <Files>
             <File>
-              <FileName>at32f403a_407_flash.c</FileName>
+              <FileName>at32f403a_407_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_flash.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>at32f403a_407_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_adc.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>at32f403a_407_exint.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_exint.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>at32f403a_407_misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_misc.c</FilePath>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_i2c.c</FilePath>
             </File>
           </Files>
           <Files>
@@ -1546,58 +1617,23 @@
           </Files>
           <Files>
             <File>
-              <FileName>at32f403a_407_xmc.c</FileName>
+              <FileName>at32f403a_407_sdio.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_xmc.c</FilePath>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_sdio.c</FilePath>
             </File>
           </Files>
           <Files>
             <File>
-              <FileName>at32f403a_407_dma.c</FileName>
+              <FileName>at32f403a_407_spi.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_dma.c</FilePath>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_spi.c</FilePath>
             </File>
           </Files>
           <Files>
             <File>
-              <FileName>at32f403a_407_wwdt.c</FileName>
+              <FileName>at32f403a_407_wdt.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_wwdt.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>at32f403a_407_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_usart.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>at32f403a_407_tmr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_tmr.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>at32f403a_407_bpr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_bpr.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>at32f403a_407_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_i2c.c</FilePath>
-            </File>
-          </Files>
-          <Files>
-            <File>
-              <FileName>system_at32f403a_407.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support\system_at32f403a_407.c</FilePath>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_wdt.c</FilePath>
             </File>
           </Files>
           <Files>
@@ -1609,16 +1645,23 @@
           </Files>
           <Files>
             <File>
-              <FileName>at32f403a_407_emac.c</FileName>
+              <FileName>at32f403a_407_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_emac.c</FilePath>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_usart.c</FilePath>
             </File>
           </Files>
           <Files>
             <File>
-              <FileName>at32f403a_407_spi.c</FileName>
+              <FileName>at32f403a_407_usb.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_spi.c</FilePath>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_usb.c</FilePath>
+            </File>
+          </Files>
+          <Files>
+            <File>
+              <FileName>at32f403a_407_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\AT32F403A_407_Firmware_Library\drivers\src\at32f403a_407_dma.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1683,16 +1726,16 @@
           <GroupName>Utilities</GroupName>
           <Files>
             <File>
-              <FileName>file_be.c</FileName>
+              <FileName>console_be.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\utilities\ulog\backend\file_be.c</FilePath>
+              <FilePath>..\..\..\components\utilities\ulog\backend\console_be.c</FilePath>
             </File>
           </Files>
           <Files>
             <File>
-              <FileName>console_be.c</FileName>
+              <FileName>file_be.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\utilities\ulog\backend\console_be.c</FilePath>
+              <FilePath>..\..\..\components\utilities\ulog\backend\file_be.c</FilePath>
             </File>
           </Files>
           <Files>

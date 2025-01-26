@@ -3,12 +3,15 @@
 
 #include <rtthread.h>
 #include "task_msg_bus.h"
+#include "can_interface.h"
 
 typedef struct can_task{
     rt_uint8_t task_event;              //任务事件
     rt_int16_t msg_bus_subscriber_id;   //消息总线订阅者ID
     task_msg_args_t msg_bus_args;       //消息总线参数
 
+    can_interface_t can1_interface;     //CAN接口
+    can_interface_t can2_interface;     //CAN接口
 }can_task_t;
 
 extern can_task_t g_can_task;

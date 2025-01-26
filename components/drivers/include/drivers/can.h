@@ -66,8 +66,9 @@ enum CANBAUD
 /** @defgroup CAN_receive_FIFO_number CAN Receive FIFO Number
   * @{
   */
-#define CAN_RX_FIFO0                (0x00000000U)  /*!< CAN receive FIFO 0 */
-#define CAN_RX_FIFO1                (0x00000001U)  /*!< CAN receive FIFO 1 */
+#define RT_CAN_RX_FIFO0                (0x00000000U)  /*!< CAN receive FIFO 0 */
+#define RT_CAN_RX_FIFO1                (0x00000001U)  /*!< CAN receive FIFO 1 */
+
 
 struct rt_can_filter_item
 {
@@ -87,7 +88,7 @@ struct rt_can_filter_item
 
 #ifdef RT_CAN_USING_HDR
 #define RT_CAN_FILTER_ITEM_INIT(id,ide,rtr,mode,mask,ind,args) \
-      {(id), (ide), (rtr), (mode),(mask), -1, CAN_RX_FIFO0,(ind), (args)}/*0:CAN_RX_FIFO0*/
+      {(id), (ide), (rtr), (mode),(mask), -1, RT_CAN_RX_FIFO0,(ind), (args)}/*0:CAN_RX_FIFO0*/
 #define RT_CAN_FILTER_STD_INIT(id,ind,args) \
      RT_CAN_FILTER_ITEM_INIT(id,0,0,0,0xFFFFFFFF,ind,args)
 #define RT_CAN_FILTER_EXT_INIT(id,ind,args) \
@@ -103,7 +104,7 @@ struct rt_can_filter_item
 #else
 
 #define RT_CAN_FILTER_ITEM_INIT(id,ide,rtr,mode,mask) \
-      {(id), (ide), (rtr), (mode), (mask), -1, CAN_RX_FIFO0 }/*0:CAN_RX_FIFO0*/
+      {(id), (ide), (rtr), (mode), (mask), -1, RT_CAN_RX_FIFO0 }/*0:CAN_RX_FIFO0*/
 #define RT_CAN_FILTER_STD_INIT(id) \
      RT_CAN_FILTER_ITEM_INIT(id,0,0,0,0xFFFFFFFF)
 #define RT_CAN_FILTER_EXT_INIT(id) \

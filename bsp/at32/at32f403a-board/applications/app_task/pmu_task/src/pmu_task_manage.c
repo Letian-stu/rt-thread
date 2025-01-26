@@ -12,11 +12,10 @@
 #endif
 #define LOG_LVL     LOG_LVL_DBG   
 
-
 pmu_task_group_t pmu_task_groups[] = {
-    {RT_NULL,   PMU_TASK_ID_COMPONENT, "TComponent_Task",  TComponent_Task,     RT_NULL,        1024, 10, 10},
-    {RT_NULL,   PMU_TASK_ID_TSP,       "TTsp_Task",        TTsp_Task,           &g_tsp_task,    1024, 10, 10},
-    {RT_NULL,   PMU_TASK_ID_CAN,       "TCan_Task",        TCan_Task,           &g_can_task,    1024, 10, 10},
+    {RT_NULL,   PMU_TASK_ID_COMPONENT, "TComponent_Task",  TComponent_Task,     RT_NULL,        2*1024, 10, 10},
+    {RT_NULL,   PMU_TASK_ID_TSP,       "TTsp_Task",        TTsp_Task,           &g_tsp_task,    2*1024, 10, 10},
+    {RT_NULL,   PMU_TASK_ID_CAN,       "TCan_Task",        TCan_Task,           &g_can_task,    2*1024, 10, 10},
 };
 
 pmu_task_manage_t g_pmu_task_manage = {
@@ -37,7 +36,7 @@ void PmuTaskManageCreate(pmu_task_manage_t *self)
     self->task_manage_fsm = PMU_TASK_FSM_CREATE;
     self->next_task_manage_fsm = PMU_TASK_FSM_STAETRUN;
     self->run_task_num = 0;
-    self->task_num = PNU_ARRAY_LEN(pmu_task_groups);
+    self->task_num = PMU_ARRAY_LEN(pmu_task_groups);
     self->task_group = (pmu_task_group_t *)pmu_task_groups;
 
     for(int i = 0; i < self->task_num; i++)
@@ -72,8 +71,6 @@ void PmuTaskManageStartRun(pmu_task_manage_t *self)
         if(self->task_group[i].thread_handle != RT_NULL)
         {
             self->run_task_num++;
-            //create thread
-
             rt_thread_startup(self->task_group[i].thread_handle);
         }
     }
@@ -104,9 +101,6 @@ void PmuTaskManageStop(pmu_task_manage_t *self)
 
     self->task_manage_fsm = PMU_TASK_FSM_STOP;
     self->next_task_manage_fsm = PMU_TASK_FSM_DESTORY;
-
-    //destory thread
-
 }
 
 void PmuTaskManageDestory(pmu_task_manage_t *self)

@@ -120,6 +120,8 @@
 #define RT_USING_SERIAL
 #define RT_USING_SERIAL_V1
 #define RT_SERIAL_RB_BUFSZ 64
+#define RT_USING_CAN
+#define RT_CAN_USING_HDR
 #define RT_USING_RTC
 #define RT_USING_SPI
 #define RT_USING_SFUD
@@ -425,6 +427,9 @@
 #define BSP_USING_SPI2
 #define BSP_SPI2_TX_USING_DMA
 #define BSP_SPI2_RX_USING_DMA
+#define BSP_USING_CAN
+#define BSP_USING_CAN1
+#define BSP_USING_CAN2
 /* end of On-chip Peripheral Drivers */
 /* end of Hardware Drivers Config */
 

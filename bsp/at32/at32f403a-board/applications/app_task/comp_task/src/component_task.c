@@ -1,6 +1,5 @@
 #include <rtthread.h>
 #include "pmu_task.h"
-#include "msg_bus_interface.h"
 #include "component_task.h"
 
 #include <ulog.h>  
@@ -11,25 +10,26 @@
 #endif
 #define LOG_LVL     LOG_LVL_DBG   
 
-typedef struct component_task{
-    rt_uint8_t task_event;  //任务事件
-
-}component_task_t;
+component_task_t g_component_task;
 
 static void TComponentCreate(component_task_t *self)
 {
     LOG_D("TComponentCreate");
 
     TMsgBusCreate();
+
+    TCompGnssCreate(&self->gnss_handle);
 }
 
 static void TComponentRunOnce(component_task_t *self)
 {
     //LOG_D("TComponentRunOnce");
+    TCompGnssRunOnce(&self->gnss_handle);
 }
 
 static void TComponentDestory(component_task_t *self)
 {
+    TCompGnssDestory(&self->gnss_handle);
     LOG_D("TComponentDestory");
 }
 

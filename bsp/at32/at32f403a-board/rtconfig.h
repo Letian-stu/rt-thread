@@ -119,7 +119,8 @@
 #define RT_UNAMED_PIPE_NUMBER 64
 #define RT_USING_SERIAL
 #define RT_USING_SERIAL_V1
-#define RT_SERIAL_RB_BUFSZ 64
+#define RT_SERIAL_USING_DMA
+#define RT_SERIAL_RB_BUFSZ 256
 #define RT_USING_CAN
 #define RT_CAN_USING_HDR
 #define RT_USING_RTC
@@ -128,7 +129,6 @@
 #define RT_SFUD_USING_SFDP
 #define RT_SFUD_USING_FLASH_INFO_TABLE
 #define RT_SFUD_SPI_MAX_HZ 50000000
-#define RT_USING_LCD
 #define RT_USING_PIN
 
 /* Using USB */
@@ -229,6 +229,8 @@
 /* IoT Cloud */
 
 /* end of IoT Cloud */
+#define PKG_USING_NMEALIB
+#define PKG_USING_NMEALIB_LATEST_VERSION
 /* end of IoT - internet of things */
 
 /* security packages */
@@ -420,10 +422,13 @@
 #define BSP_RTC_USING_LEXT
 #define BSP_USING_UART
 #define BSP_USING_UART1
+#define BSP_USING_UART2
+#define BSP_UART2_RX_USING_DMA
+#define BSP_USING_UART3
+#define BSP_UART3_RX_USING_DMA
+#define BSP_UART3_TX_USING_DMA
 #define BSP_USING_SPI
 #define BSP_USING_SPI1
-#define BSP_SPI1_TX_USING_DMA
-#define BSP_SPI1_RX_USING_DMA
 #define BSP_USING_SPI2
 #define BSP_SPI2_TX_USING_DMA
 #define BSP_SPI2_RX_USING_DMA

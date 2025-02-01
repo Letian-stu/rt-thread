@@ -6,6 +6,6 @@ src = Glob('./src/*.c')
 path = [cwd]
 path += [cwd + '/inc']
 
-group = DefineGroup('lib_attr', src, depend = [], CPPPATH = path)
+group = DefineGroup('rbd_interface', src, depend = [], CPPPATH = path)
 
 Return('group')

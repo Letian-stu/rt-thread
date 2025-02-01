@@ -10,7 +10,7 @@
 /*                              define workspace                              */
 /* -------------------------------------------------------------------------- */
 #define TCOMP_GNSS_DEV_PORT     ("uart2")
-#define TCOMP_GNSS_ENABLE_LOG	(1)
+#define TCOMP_GNSS_ENABLE_LOG	(0)
 #define TCOMP_GNSS_DEBUG        (0)
 
 /* -------------------------------------------------------------------------- */

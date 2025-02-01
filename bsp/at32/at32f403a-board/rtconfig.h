@@ -64,6 +64,7 @@
 #define RT_USING_USER_MAIN
 #define RT_MAIN_THREAD_STACK_SIZE 2048
 #define RT_MAIN_THREAD_PRIORITY 10
+#define RT_USING_LEGACY
 #define RT_USING_MSH
 #define RT_USING_FINSH
 #define FINSH_USING_MSH
@@ -117,10 +118,13 @@
 
 #define RT_USING_DEVICE_IPC
 #define RT_UNAMED_PIPE_NUMBER 64
+#define RT_USING_SYSTEM_WORKQUEUE
+#define RT_SYSTEM_WORKQUEUE_STACKSIZE 2048
+#define RT_SYSTEM_WORKQUEUE_PRIORITY 23
 #define RT_USING_SERIAL
 #define RT_USING_SERIAL_V1
 #define RT_SERIAL_USING_DMA
-#define RT_SERIAL_RB_BUFSZ 256
+#define RT_SERIAL_RB_BUFSZ 4096
 #define RT_USING_CAN
 #define RT_CAN_USING_HDR
 #define RT_USING_RTC
@@ -166,6 +170,26 @@
 
 /* Network */
 
+#define RT_USING_SAL
+
+/* Docking with protocol stacks */
+
+#define SAL_USING_AT
+/* end of Docking with protocol stacks */
+#define SAL_USING_POSIX
+#define RT_USING_NETDEV
+#define NETDEV_USING_IFCONFIG
+#define NETDEV_USING_PING
+#define NETDEV_USING_NETSTAT
+#define NETDEV_USING_AUTO_DEFAULT
+#define NETDEV_IPV4 1
+#define NETDEV_IPV6 0
+#define RT_USING_AT
+#define AT_USING_CLIENT
+#define AT_CLIENT_NUM_MAX 1
+#define AT_USING_SOCKET
+#define AT_USING_CLI
+#define AT_SW_VERSION_NUM 0x10301
 /* end of Network */
 
 /* Memory protection */
@@ -202,6 +226,11 @@
 
 /* IoT - internet of things */
 
+#define PKG_USING_WEBCLIENT
+#define WEBCLIENT_USING_FILE_DOWMLOAD
+#define WEBCLIENT_NOT_USE_TLS
+#define PKG_USING_WEBCLIENT_V220
+#define PKG_WEBCLIENT_VER_NUM 0x20200
 
 /* Wi-Fi */
 
@@ -225,10 +254,26 @@
 
 /* end of CYW43439 WiFi */
 /* end of Wi-Fi */
+#define PKG_USING_AT_DEVICE
+#define AT_DEVICE_USING_AIR720
+#define AT_DEVICE_AIR720_INIT_ASYN
+#define AT_DEVICE_AIR720_SOCKET
+#define AT_DEVICE_AIR720_SAMPLE
+#define AIR720_SAMPLE_POWER_PIN -1
+#define AIR720_SAMPLE_STATUS_PIN -1
+#define AIR720_SAMPLE_CLIENT_NAME "uart3"
+#define AIR720_SAMPLE_RECV_BUFF_LEN 4096
+#define PKG_USING_AT_DEVICE_LATEST_VERSION
+#define PKG_AT_DEVICE_VER_NUM 0x99999
 
 /* IoT Cloud */
 
 /* end of IoT Cloud */
+#define PKG_USING_OTA_DOWNLOADER
+#define OTA_DOWNLOADER_DEBUG
+#define PKG_USING_HTTP_OTA
+#define PKG_HTTP_OTA_URL "http://xxx/xxx/rtthread.rbl"
+#define PKG_USING_OTA_DOWNLOADER_V100
 #define PKG_USING_NMEALIB
 #define PKG_USING_NMEALIB_LATEST_VERSION
 /* end of IoT - internet of things */

@@ -1,13 +1,13 @@
 #include "flashdb_interface.h"
 #include "flashdb_table.h"
 
-#include <ulog.h>  
-
 #ifdef LOG_TAG
 #undef LOG_TAG
 #define LOG_TAG "fdb_interface"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  
+
+#include <ulog.h>  
 
 fdb_interface_t g_fdbkv_interface = {0};
 

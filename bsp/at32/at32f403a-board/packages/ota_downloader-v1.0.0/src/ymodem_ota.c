@@ -29,7 +29,7 @@
 
 #ifdef PKG_USING_YMODEM_OTA
 
-#define DEFAULT_DOWNLOAD_PART "download"
+#define DEFAULT_DOWNLOAD_PART "ota"
 
 static size_t update_file_total_size, update_file_cur_size;
 static const struct fal_partition * dl_part = RT_NULL;

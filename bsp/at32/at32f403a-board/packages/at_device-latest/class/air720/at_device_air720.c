@@ -22,6 +22,8 @@
 
 #ifdef AT_DEVICE_USING_AIR720
 
+uint8_t g_connect_ok = 0;
+
 #define AIR720_WAIT_CONNECT_TIME 30000
 #define AIR720_THREAD_STACK_SIZE 2048
 #define AIR720_THREAD_PRIORITY (RT_THREAD_PRIORITY_MAX / 2)
@@ -273,11 +275,13 @@ static void check_link_status_entry(void *parameter)
                 if (strncmp(parsed_data, "99,99", sizeof(parsed_data)))
                 {
                     LOG_D("air720 device(%s) signal strength: %s", device->name, parsed_data);
+                    g_connect_ok = 1;
                 }
             }
         }
         else
         {
+            g_connect_ok = 0;
             //LTE down
             LOG_E("the lte pin is low");
             air720_reboot(device);
@@ -983,6 +987,8 @@ static int air720_control(struct at_device *device, int cmd, void *arg)
     case AT_DEVICE_CTRL_NET_DISCONN:
     case AT_DEVICE_CTRL_SET_WIFI_INFO:
     case AT_DEVICE_CTRL_GET_SIGNAL:
+        *(uint8_t *)arg = g_connect_ok;
+        break;
     case AT_DEVICE_CTRL_GET_GPS:
     case AT_DEVICE_CTRL_GET_VER:
         LOG_W("air720 not support the control command(%d).", cmd);

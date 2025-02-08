@@ -11,6 +11,7 @@ enum{
     PMU_TASK_ID_GNSS,
     PMU_TASK_ID_TSP,
     PMU_TASK_ID_CAN,
+    PMU_TASK_ID_OTA,
 };
 
 enum{

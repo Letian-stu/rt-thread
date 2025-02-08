@@ -3,19 +3,21 @@
 #include "component_task.h"
 #include "tsp_task.h"
 #include "can_task.h"
+#include "ota_task.h"
 
-#include <ulog.h>  
- 
 #ifdef LOG_TAG
 #undef LOG_TAG
 #define LOG_TAG "pmu_task"
 #endif
 #define LOG_LVL     LOG_LVL_DBG   
 
+#include <ulog.h>  
+ 
 pmu_task_group_t pmu_task_groups[] = {
     {RT_NULL,   PMU_TASK_ID_COMPONENT, "TComponent_Task",  TComponent_Task,     &g_component_task,  2*1024, 10, 10},
     {RT_NULL,   PMU_TASK_ID_TSP,       "TTsp_Task",        TTsp_Task,           &g_tsp_task,    	2*1024, 10, 10},
     {RT_NULL,   PMU_TASK_ID_CAN,       "TCan_Task",        TCan_Task,           &g_can_task,    	2*1024, 10, 10},
+    {RT_NULL,   PMU_TASK_ID_OTA,       "TOta_Task",        TOta_Task,           &g_Ota_task,    	4*1024, 5,  10},
 };
 
 pmu_task_manage_t g_pmu_task_manage = {

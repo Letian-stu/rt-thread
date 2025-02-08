@@ -3,13 +3,13 @@
 #include "rtdevice.h"
 #include "drivers/can.h"
 
-#include <ulog.h>  
-
 #ifdef LOG_TAG
 #undef LOG_TAG
 #define LOG_TAG "can_interface"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  
+
+#include <ulog.h>  
 
 void TCanDeviceCreate(can_interface_t *self, CanRxCallback cb)
 {

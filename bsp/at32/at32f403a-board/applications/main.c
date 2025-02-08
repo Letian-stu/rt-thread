@@ -3,12 +3,11 @@
  * @version: 
  * @Author: letian
  * @Date: 2024-10-29 22:59:50
- * @LastEditTime: 2025-02-01 21:24:37
+ * @LastEditTime: 2025-02-08 22:59:20
  */
 #include <rtthread.h>
 #include <rtdevice.h>
 #include "drv_common.h"
-#include <ulog.h>  
 
 #include "drv_spi.h"
 #include "spi_flash_sfud.h"
@@ -21,6 +20,8 @@
 #define LOG_TAG "main"
 #endif
 #define LOG_LVL     LOG_LVL_DBG   
+
+#include <ulog.h>  
 
 #include "at32f403a_407.h"
 
@@ -89,7 +90,6 @@ int dfs_mount_init(void)
             }
         }
     }
-	return 0;
 }
 INIT_ENV_EXPORT(dfs_mount_init);
 
@@ -113,17 +113,8 @@ int main(void)
 	rt_uint32_t tick = 0;
     while (1)
     {
-		if(tick == 10)
-		{	
-			task_msg_publish(MSG_BUS_EVENT_RUN1S, RT_NULL);
-		}
-		if(tick == 20)
-		{
-			uint8_t msg_data[8] = {0x00, 0x11, 0x22, 0x33, 0x44, 0x55, 0x66, 0x77};
-			task_msg_publish_obj(MSG_BUS_EVENT_DATA_TRANS, &msg_data, sizeof(msg_data));
-		}
-		tick++;
         PmuTaskRunOnce();
         rt_thread_mdelay(1000);
+        task_msg_publish(MSG_BUS_EVENT_RUN1S, RT_NULL);
     }
 }

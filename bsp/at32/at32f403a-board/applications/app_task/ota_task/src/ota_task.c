@@ -1,38 +1,41 @@
 #include <rtthread.h>
 #include "pmu_task.h"
 #include "msg_bus_interface.h"
-#include "tsp_task.h"
+#include "Ota_task.h"
 
 #ifdef LOG_TAG
 #undef LOG_TAG
-#define LOG_TAG "TTsp_Task"
+#define LOG_TAG "TOta_Task"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  
 
 #include <ulog.h>  
 
-tsp_task_t g_tsp_task = {0};
+Ota_task_t g_Ota_task = {0};
 
-static void TTspCreate(tsp_task_t *self)
+static void TOtaCreate(Ota_task_t *self)
 {
-    LOG_D("TTspCreate");
+    LOG_D("TOtaCreate");
     self->msg_bus_subscriber_id = task_msg_subscriber_create2(g_msg_bus_event_id, TASK_MSG_COUNT);
+
+    THttpOtaTaskCreate(&self->http_ota_session);
 }
 
-static void TTspRunOnce(tsp_task_t *self)
+static void TOtaRunOnce(Ota_task_t *self)
 {
-    //LOG_D("TTspRunOnce");
+    //LOG_D("TOtaRunOnce");
+
 }
 
-static void TTspDestory(tsp_task_t *self)
+static void TOtaDestory(Ota_task_t *self)
 {
-    LOG_D("TTspDestory");
+    LOG_D("TOtaDestory");
 }
 
-void TTsp_Task(void *param)
+void TOta_Task(void *param)
 {
-    tsp_task_t *self = (tsp_task_t *)param;
-    TTspCreate(self);
+    Ota_task_t *self = (Ota_task_t *)param;
+    TOtaCreate(self);
     while(1)
     {
         if (task_msg_wait_until(self->msg_bus_subscriber_id, MSG_BUS_TIMEOUT, &self->msg_bus_args) == RT_EOK)
@@ -40,7 +43,7 @@ void TTsp_Task(void *param)
             switch(self->msg_bus_args->msg_name)
             {
                 case MSG_BUS_EVENT_RUN1S:{
-                    
+                    THttpOtaTaskRunOnce(&self->http_ota_session);
                 }
                 break;
                 case MSG_BUS_EVENT_TASKSUSPED:{
@@ -54,9 +57,9 @@ void TTsp_Task(void *param)
             }
             task_msg_release(self->msg_bus_args);
         }
-        TTspRunOnce(self);
+        TOtaRunOnce(self);
     }
-    TTspDestory(self);
+    TOtaDestory(self);
 }
 
 

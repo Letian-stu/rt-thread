@@ -1,13 +1,13 @@
 #include "msg_bus_interface.h"
 #include "task_msg_bus.h"
 
-#include <ulog.h>  
-
 #ifdef LOG_TAG
 #undef LOG_TAG
 #define LOG_TAG "msg_bus_interface"
 #endif
-#define LOG_LVL     LOG_LVL_DBG   
+#define LOG_LVL     LOG_LVL_INFO   
+
+#include <ulog.h>  
 
 enum task_msg_name g_msg_bus_event_id[] = {
     MSG_BUS_EVENT_RUN1S, 

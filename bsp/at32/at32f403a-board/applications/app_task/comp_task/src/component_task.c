@@ -2,13 +2,13 @@
 #include "pmu_task.h"
 #include "component_task.h"
 
-#include <ulog.h>  
-
 #ifdef LOG_TAG
 #undef LOG_TAG
 #define LOG_TAG "component_task"
 #endif
 #define LOG_LVL     LOG_LVL_DBG   
+
+#include <ulog.h>  
 
 component_task_t g_component_task;
 

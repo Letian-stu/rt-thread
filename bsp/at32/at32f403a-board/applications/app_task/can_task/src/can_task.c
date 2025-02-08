@@ -4,13 +4,13 @@
 #include "can_task.h"
 #include "can_interface.h"
 
-#include <ulog.h>  
-
 #ifdef LOG_TAG
 #undef LOG_TAG
 #define LOG_TAG "TCan_Task"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  
+
+#include <ulog.h>  
 
 can_task_t g_can_task = {0};
 

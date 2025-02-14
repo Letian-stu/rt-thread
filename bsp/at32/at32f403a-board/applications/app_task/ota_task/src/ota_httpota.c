@@ -8,6 +8,7 @@
 #include "webclient.h"
 #include <fal.h>
 #include "at_device.h"
+#include "blib.h"
 
 #ifdef LOG_TAG
 #undef LOG_TAG
@@ -71,7 +72,7 @@ static int http_ota_shard_download_handle(char *buffer, int length)
 {
     int ret = RT_EOK;
     /* Write the data to the corresponding partition address */
-    if (fal_partition_write(g_dl_part, g_begin_offset, buffer, length) < 0)
+    if (fal_partition_write(g_dl_part, g_begin_offset, (const uint8_t *)buffer, length) < 0)
     {
         LOG_E("Firmware download failed! Partition (%s) write data error!", g_dl_part->name);
         ret = -RT_ERROR;
@@ -178,24 +179,32 @@ __exit:
 
 void THttpOtaTaskRunOnce(tsp_httpota_t *self)
 {
-    LOG_D("self->ota_fsm %d", self->ota_fsm);
+    RUN_IF_ELAPSED(last_show_info_time, 30000)
+    {
+        LOG_D("THttpOtaTaskRunOnce %d", self->ota_fsm);
+        SYNC_TIME(last_show_info_time);
+    }
     switch(self->ota_fsm)
     {
         case THTTP_OTA_FSM_NET_CONNECT:
         {
-            uint8_t link_state = 0;
-            struct at_device *dev= at_device_get_first_initialized();
-            at_device_control(dev, AT_DEVICE_CTRL_GET_SIGNAL, &link_state);
-            if(link_state == 1)
+            RUN_IF_ELAPSED(last_check_net_time, 5000)
             {
-                LOG_D("http net connect ok %d", link_state);
-                self->ota_fsm = THTTP_OTA_FSM_IDLE;
+                uint8_t link_state = 0;
+                struct at_device *dev= at_device_get_first_initialized();
+                at_device_control(dev, AT_DEVICE_CTRL_GET_SIGNAL, &link_state);
+                if(link_state == 1)
+                {
+                    LOG_D("http net connect ok %d", link_state);
+                    self->ota_fsm = THTTP_OTA_FSM_IDLE;
+                }
+                SYNC_TIME(last_check_net_time);
             }
         }
         break;
         case THTTP_OTA_FSM_IDLE:
         {
-            if(1)
+            if(0)
             {
                 self->ota_fsm = THTTP_OTA_FSM_UPDATE_URL;
             }

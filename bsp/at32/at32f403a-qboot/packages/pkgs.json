@@ -1,27 +1,27 @@
 [
  {
-  "name": "OTA_DOWNLOADER",
-  "path": "/packages/iot/ota_downloader",
-  "ver": "v1.0.0"
- },
+  "path": "/packages/iot/ota_downloader", 
+  "ver": "v1.0.0", 
+  "name": "OTA_DOWNLOADER"
+ }, 
  {
-  "name": "QBOOT",
-  "path": "/packages/system/qboot",
-  "ver": "v1.06"
- },
+  "path": "/packages/system/qboot", 
+  "ver": "v1.06", 
+  "name": "QBOOT"
+ }, 
  {
-  "name": "QLED",
-  "path": "/packages/peripherals/quick_led",
-  "ver": "latest"
- },
+  "path": "/packages/peripherals/quick_led", 
+  "ver": "latest", 
+  "name": "QLED"
+ }, 
  {
-  "name": "QUICKLZ",
-  "path": "/packages/misc/quicklz",
-  "ver": "v1.0.1"
- },
+  "path": "/packages/misc/quicklz", 
+  "ver": "v1.0.1", 
+  "name": "QUICKLZ"
+ }, 
  {
-  "name": "CRCLIB",
-  "path": "/packages/misc/crclib",
-  "ver": "v1.02"
+  "path": "/packages/misc/crclib", 
+  "ver": "v1.02", 
+  "name": "CRCLIB"
  }
 ]

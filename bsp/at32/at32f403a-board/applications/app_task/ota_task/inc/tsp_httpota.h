@@ -31,6 +31,8 @@ typedef struct tsp_httpota
 
     char ota_port_name[32];
 
+    uint32_t last_check_net_time;
+    uint32_t last_show_info_time;
     uint8_t ota_fsm;
 }tsp_httpota_t;
 

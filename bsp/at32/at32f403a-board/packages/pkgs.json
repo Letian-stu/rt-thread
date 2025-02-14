@@ -1,5 +1,10 @@
 [
  {
+  "path": "/packages/iot/pahomqtt", 
+  "ver": "latest", 
+  "name": "PAHOMQTT"
+ }, 
+ {
   "path": "/packages/iot/webclient", 
   "ver": "v2.2.0", 
   "name": "WEBCLIENT"
@@ -18,6 +23,11 @@
   "path": "/packages/iot/nmealib", 
   "ver": "latest", 
   "name": "NMEALIB"
+ }, 
+ {
+  "path": "/packages/language/JSON/cJSON", 
+  "ver": "v1.7.17", 
+  "name": "CJSON"
  }, 
  {
   "path": "/packages/system/enhanced-kservice/rt_vsnprintf_full", 

@@ -1,10 +1,11 @@
 #include "tcloud_mqtt.h"
+#include <rtthread.h>
 #include "at_device.h"
 #include "blib.h"
 
 #ifdef LOG_TAG
 #undef LOG_TAG
-#define LOG_TAG "tcloud"
+#define LOG_TAG "TCloud"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  
 
@@ -22,11 +23,26 @@ static void TCloudBaseInfoCfg(tcloud_mqtt_t *self)
 static void TCloudSubCb(MQTTClient *c, MessageData *msg_data)
 {
     *((char *)msg_data->message->payload + msg_data->message->payloadlen) = '\0';
-    LOG_D("mqtt sub callback: %.*s %.*s",
+    LOG_D("mqtt sub callback: topic [%d][%s] rdata [%d][%s]",
                msg_data->topicName->lenstring.len,
                msg_data->topicName->lenstring.data,
                msg_data->message->payloadlen,
                (char *)msg_data->message->payload);
+    
+    tcloud_user_data_t *user_data = (tcloud_user_data_t *)c->user_data;
+
+    tcloud_recv_mag_t *msg = &user_data->recv_msg;
+
+    msg->topic_len = msg_data->topicName->lenstring.len;
+    msg->recv_len = msg_data->message->payloadlen;
+    rt_memcpy(msg->topic_name, msg_data->topicName->lenstring.data, msg->topic_len);
+    rt_memcpy(msg->recv_data, msg_data->message->payload, msg->recv_len);
+
+    int res = rt_sem_release(user_data->msg_sem);
+    if(RT_EOK != res)
+    {
+        LOG_D("mqtt recv msg release err", res);
+    }
 }
 
 static void TCloudSubDefaultCb(MQTTClient *c, MessageData *msg_data)
@@ -65,7 +81,7 @@ static void ThingsCloudMqttCreate(tcloud_mqtt_t *self)
     /* config connect param */
     rt_memcpy(&client->condata, &condata, sizeof(condata));
     client->condata.clientID.cstring = self->mqtt_client_id;
-    client->condata.keepAliveInterval = 30;
+    client->condata.keepAliveInterval = 60*3;
     client->condata.cleansession = 1;
     client->condata.username.cstring = self->mqtt_username;
     client->condata.password.cstring = self->mqtt_password;
@@ -109,6 +125,15 @@ static void ThingsCloudMqttCreate(tcloud_mqtt_t *self)
 
     /* set default subscribe event callback */
     client->defaultMessageHandler = TCloudSubDefaultCb;
+
+    client->user_data = &self->mqtt_user_data;
+
+    self->mqtt_user_data.msg_sem = rt_sem_create("mqtt_recv_sem", 0, RT_IPC_FLAG_FIFO);
+    if(self->mqtt_user_data.msg_sem == NULL)
+    {
+        LOG_E("no memory for MQTT recv msg!");
+        return;
+    }
 }
 
 int TCloudMqttSessionIsConnect(tcloud_mqtt_t *self)
@@ -119,7 +144,7 @@ int TCloudMqttSessionIsConnect(tcloud_mqtt_t *self)
 void ThingsCloudMqttSessionCreate(tcloud_mqtt_t *self)
 {
     TCloudBaseInfoCfg(self);
-    TcloudAttrSyncTableInit(&self->attr_table);
+    TCloudAttrSyncTableInit(&self->attr_table);
 }
 
 void ThingsCloudMqttSessionRunOnce(tcloud_mqtt_t *self)
@@ -148,34 +173,68 @@ void ThingsCloudMqttSessionRunOnce(tcloud_mqtt_t *self)
         }
         break;
         case MQTTCLIENT_SESSION_INIT:{
-            ThingsCloudMqttCreate(self);
-            paho_mqtt_start(&self->mqtt_client);
-            self->mqttclient_session_state = MQTTCLIENT_SESSION_SYNCATTR;
-        }
-        break;
-        case MQTTCLIENT_SESSION_SYNCATTR:{
-            TcloudAttrSyncTableCreate(&self->attr_table);
-            if(TCloudMqttSessionIsConnect(self))
+            if(!self->mqtt_session_is_init)
             {
-                paho_mqtt_publish(&self->mqtt_client, QOS1, MQTT_SUBTOPIC_ATTRUP, self->attr_table.fdb_kv_json_str);
-                self->mqttclient_session_state = MQTTCLIENT_SESSION_CONNECTING;
-            }else{
-
+                ThingsCloudMqttCreate(self);
+                paho_mqtt_start(&self->mqtt_client);      
             }
-            TcloudAttrSyncTableFree(&self->attr_table);
+            self->mqttclient_session_state = MQTTCLIENT_SESSION_CONNECTING;      
         }
         break;
         case MQTTCLIENT_SESSION_CONNECTING:{
-            // if(0 ==  )
-            // {
-            //     self->mqttclient_session_state = MQTTCLIENT_SESSION_CONNECTED;
-            // }else{
-            //     self->mqttclient_session_state = MQTTCLIENT_SESSION_IDLE;
-            // }
+            if(TCloudMqttSessionIsConnect(self))
+            {
+                self->mqttclient_session_state = MQTTCLIENT_SESSION_SYNCATTR;
+            }else{
+                self->mqttclient_session_state = MQTTCLIENT_SESSION_IDLE;
+            }
+        }
+        break;
+        case MQTTCLIENT_SESSION_SYNCATTR:{
+            TCloudAttrSyncTableCreate(&self->attr_table);
+            paho_mqtt_publish(&self->mqtt_client, QOS1, MQTT_SUBTOPIC_ATTRUP, self->attr_table.fdb_kv_json_str);
+            TCloudAttrSyncTableFree(&self->attr_table);
+            self->mqttclient_session_state = MQTTCLIENT_SESSION_CONNECTED;
         }
         break;
         case MQTTCLIENT_SESSION_CONNECTED:{
-            
+            tcloud_recv_mag_t *recv_msg = &self->mqtt_user_data.recv_msg;
+            int result = rt_sem_take(self->mqtt_user_data.msg_sem, 0);
+            if (result == RT_EOK)
+            {
+                LOG_D("mqtt recv topic len %d name [%s]", recv_msg->topic_len, recv_msg->topic_name);
+                LOG_D("mqtt recv msg len %d data [%s]", recv_msg->recv_len, recv_msg->recv_data);
+                if(0 == rt_memcmp(MQTT_SUBTOPIC_ATTRRESP, recv_msg->topic_name, recv_msg->topic_len))
+                {
+                    LOG_I("mqtt recv topic %s", MQTT_SUBTOPIC_ATTRRESP);
+                }
+                else if(0 == rt_memcmp(MQTT_SUBTOPIC_ATTRPUSH, recv_msg->topic_name, recv_msg->topic_len))
+                {
+                    LOG_I("mqtt recv topic %s", MQTT_SUBTOPIC_ATTRPUSH);
+                    LOG_I("write attr num %d", TCloudAtteGenerateDbTable(self, recv_msg->recv_data));
+                }
+                else if(0 == rt_memcmp(MQTT_SUBTOPIC_EVENTRESP, recv_msg->topic_name, recv_msg->topic_len))
+                {
+                    LOG_I("mqtt recv topic %s", MQTT_SUBTOPIC_EVENTRESP);
+
+                }
+                else if(0 == rt_memcmp(MQTT_SUBTOPIC_CMDSEND, recv_msg->topic_name, recv_msg->topic_len))
+                {
+                    LOG_I("mqtt recv topic %s", MQTT_SUBTOPIC_CMDSEND);
+
+                }
+                else if(0 == rt_memcmp(MQTT_SUBTOPIC_CMDRESP, recv_msg->topic_name, recv_msg->topic_len))
+                {
+                    LOG_I("mqtt recv topic %s", MQTT_SUBTOPIC_CMDRESP);
+
+                }
+                else if(0 == rt_memcmp(MQTT_SUBTOPIC_SERIES, recv_msg->topic_name, recv_msg->topic_len))
+                {
+                    LOG_I("mqtt recv topic %s", MQTT_SUBTOPIC_SERIES);
+
+                }
+                rt_memset(&self->mqtt_user_data.recv_msg, 0x00, sizeof(self->mqtt_user_data.recv_msg));
+            }
         }
         break;
         case MQTTCLIENT_SESSION_DISCONNECT:{

@@ -11,12 +11,12 @@
 
 fdb_interface_t g_fdbkv_interface = {0};
 
-static fdb_time_t get_time(void)
-{
-    static int cur_times = 0;
-    cur_times += 1;
-    return cur_times;
-}
+//static fdb_time_t get_time(void)
+//{
+//    static int cur_times = 0;
+//    cur_times += 1;
+//    return cur_times;
+//}
 
 void TFlashDbMutexCreate(fdb_interface_t *self)
 {
@@ -109,7 +109,7 @@ int TFlashDbTableCreate(fdb_interface_t *self, struct fdb_default_kv_node *fdb, 
 
 int TFlashDbCompCreate(void)
 {
-    TFlashDbTableCreate(&g_fdbkv_interface, g_kv_table, KV_DB_NUM );
+    TFlashDbTableCreate(&g_fdbkv_interface, g_kv_table, g_kv_num );
     TFlashDbMutexCreate(&g_fdbkv_interface);
 
     fdb_kvdb_control(&g_fdbkv_interface.kvdb, FDB_KVDB_CTRL_SET_LOCK, TFlashDbMutexLock);
@@ -121,10 +121,6 @@ int TFlashDbCompCreate(void)
     TFlashDbGetValue(U32_BOOT_COUNT, &get_val);
     get_val += 1;
     TFlashDbSetValue(U32_BOOT_COUNT, &get_val, sizeof(rt_uint32_t));
-
-    rt_uint8_t get_array[10] = {0};
-	sprintf(get_array, "%d.%d", get_val, get_val);
-    TFlashDbSetValue(STR_VEHICLEVIN, get_array, sizeof(get_array));
 
 //    fdb_tsdb_control(&tsdb, FDB_TSDB_CTRL_SET_LOCK, kvdb_lock);
 //    fdb_tsdb_control(&tsdb, FDB_TSDB_CTRL_SET_UNLOCK, kvdb_unlock);

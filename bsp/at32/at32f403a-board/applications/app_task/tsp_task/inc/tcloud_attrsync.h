@@ -12,10 +12,12 @@ typedef struct tcloud_attrsync{
     char *fdb_kv_json_str;
 }tcloud_attrsync_t;
 
-void TcloudAttrSyncTableInit(tcloud_attrsync_t *self);
+int TCloudAtteGenerateDbTable(tcloud_attrsync_t *self, char *data);
 
-void TcloudAttrSyncTableCreate(tcloud_attrsync_t *self);
+void TCloudAttrSyncTableInit(tcloud_attrsync_t *self);
 
-void TcloudAttrSyncTableFree(tcloud_attrsync_t *self);
+void TCloudAttrSyncTableCreate(tcloud_attrsync_t *self);
+
+void TCloudAttrSyncTableFree(tcloud_attrsync_t *self);
 
 #endif

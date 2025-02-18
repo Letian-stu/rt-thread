@@ -10,6 +10,8 @@
 #include "at_device.h"
 #include "blib.h"
 
+#include "flashdb_table.h"
+
 #ifdef LOG_TAG
 #undef LOG_TAG
 #define LOG_TAG "tsp_http_ota"
@@ -204,9 +206,23 @@ void THttpOtaTaskRunOnce(tsp_httpota_t *self)
         break;
         case THTTP_OTA_FSM_IDLE:
         {
-            if(0)
+            RUN_IF_ELAPSED(last_check_ota_state, 30000)
             {
-                self->ota_fsm = THTTP_OTA_FSM_UPDATE_URL;
+                uint32_t http_ota_state = 0;
+                if(self->ota_err_time > 3)
+                {
+                    self->ota_err_time = 0;
+                    TFlashDbSetValue(U32_START_OTA, 0, sizeof(uint32_t));
+                    LOG_I("http ota url update error timeover url %s", http_ota_state, self->http_ota_url);
+                }
+                TFlashDbGetValue(U32_START_OTA, &http_ota_state);
+                if(http_ota_state == 1)
+                {
+                    TFlashDbGetValue(STR_HTTPOTA_URL, self->http_ota_url);
+                    LOG_I("http ota url update %d url %s", http_ota_state, self->http_ota_url);
+                    self->ota_fsm = THTTP_OTA_FSM_UPDATE_URL;
+                }
+                SYNC_TIME(last_check_ota_state);
             }
         }
         break;
@@ -225,7 +241,11 @@ void THttpOtaTaskRunOnce(tsp_httpota_t *self)
         break;
         case THTTP_OTA_FSM_DOWNLOAD:
         {
-            http_ota_fw_download(self->http_ota_url, self->ota_port_name);
+            if(RT_EOK != http_ota_fw_download(self->http_ota_url, self->ota_port_name) )
+            {
+                self->ota_err_time++;
+                self->ota_fsm = THTTP_OTA_FSM_IDLE;
+            }
         }
         break;
     }

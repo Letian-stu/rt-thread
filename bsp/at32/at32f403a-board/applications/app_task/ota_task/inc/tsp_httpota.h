@@ -8,7 +8,7 @@
 #define GET_RESP_BUFSZ              1024
 #define HTTP_OTA_DL_DELAY           (10 * 1000)
 
-#define HTTP_OTA_URL_MAX_LEN        (128)
+#define HTTP_OTA_URL_MAX_LEN        (64)
 
 #define HTTP_OTA_URL                "http://k3m35k.natappfree.cc/ota-v1.1.0.rbl"
 #define HTTP_OTA_PART_NAME          "ota"
@@ -31,6 +31,8 @@ typedef struct tsp_httpota
 
     char ota_port_name[32];
 
+    uint8_t ota_err_time;
+    uint32_t last_check_ota_state;
     uint32_t last_check_net_time;
     uint32_t last_show_info_time;
     uint8_t ota_fsm;

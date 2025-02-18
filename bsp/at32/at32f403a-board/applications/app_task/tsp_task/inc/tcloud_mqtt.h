@@ -36,10 +36,24 @@ enum{
 #define MQTT_SUBTOPIC_ATTRUP        "attributes"
 
 
+typedef struct tcloud_recv_mag{
+    uint32_t topic_len;
+    char topic_name[64];
+    uint32_t recv_len;
+    char recv_data[512];
+}tcloud_recv_mag_t;
+
+typedef struct tcloud_user_data{
+    rt_sem_t msg_sem;
+    tcloud_recv_mag_t recv_msg;
+}tcloud_user_data_t;
+
 typedef struct tcloud_mqtt
 {
+    uint8_t mqtt_session_is_init;
     uint8_t mqttclient_session_state;
     MQTTClient mqtt_client;
+    tcloud_user_data_t mqtt_user_data;
 
     tcloud_attrsync_t attr_table;
 

@@ -54,6 +54,10 @@ void TOta_Task(void *param)
 
                 }
                 break;
+                case MSG_BUS_EVENT_START_HTTP_OTA:{
+                    
+                }
+                break;
             }
             task_msg_release(self->msg_bus_args);
         }

@@ -196,7 +196,7 @@
 #define ULOG_OUTPUT_LVL_D
 #define ULOG_OUTPUT_LVL 7
 #define ULOG_ASSERT_ENABLE
-#define ULOG_LINE_BUF_SIZE 128
+#define ULOG_LINE_BUF_SIZE 256
 
 /* log format */
 

@@ -1,0 +1,20 @@
+#include "flashdb_table.h"
+
+{% for var in variables %}
+{% if var.type == 'U32' %}
+rt_uint32_t {{ "{:<30}".format(var.var_name) }} = 0;
+{% elif var.type == 'STR' %}
+char {{ "{:<10}".format(var.var_name) }}[{{ var.array_size }}] = {0};
+{% else %}
+{{ var.type | ljust(8) }} {{ "{:<30}".format(var.var_name) }} = 0;
+{% endif %}
+{% endfor %}
+
+const fdb_kv_table_t g_kv_table[] = {
+    {% for var in variables %}
+    { {{ "{:<25}".format(var.macro_name) }}, &{{ "{:<25}".format(var.var_name) }}, sizeof({{ var.var_name }}) },
+    {% endfor %}
+};
+
+const size_t g_kv_num = sizeof(g_kv_table) / sizeof(g_kv_table[0]);
+

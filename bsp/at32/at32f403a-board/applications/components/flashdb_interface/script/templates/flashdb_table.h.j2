@@ -1,0 +1,23 @@
+#ifndef _FLASHDB_TABLE_H_
+#define _FLASHDB_TABLE_H_
+
+#include "flashdb_interface.h"
+#include "flashdb.h"
+
+#define TYPE_U8     "U08_"
+#define TYPE_16     "U16_"
+#define TYPE_32     "U32_"
+#define TYPE_FT     "UFT_"
+#define TYPE_STR    "STR_"
+
+{% for var in variables %}
+#define {{ "{:<25}".format(var.macro_name) }} "{{ var.macro_name }}"
+{% endfor %}
+
+typedef struct fdb_default_kv_node fdb_kv_table_t;
+
+extern const fdb_kv_table_t g_kv_table[];
+extern const size_t g_kv_num;
+
+#endif
+

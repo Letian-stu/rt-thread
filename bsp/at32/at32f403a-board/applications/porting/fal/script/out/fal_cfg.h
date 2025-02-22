@@ -4,8 +4,12 @@
 #include <rtconfig.h>
 #include <board.h>
 
-#define ONCHIP_FLASH_DEV_NAME                       "OnChip"
+#define RAM_FLASH_DEV_NAME                          "ram_flash"
+#define ONCHIP_FLASH_DEV_NAME                       "onchip_flash"
 #define NOR_FLASH_DEV_NAME                          "w25q64"
+
+#define FAL_RAM_START_ADDR_ATTR                     0
+#define FAL_RAM_MAX_LEN_ATTR                        (10*1024)
 
 #define FAL_ONCHIP_START_ADDR_BOOT                  0
 #define FAL_ONCHIP_MAX_LEN_BOOT                     (128*1024)
@@ -36,13 +40,14 @@
 #define FAL_NORFLASH_MAX_LEN_RESERVED               (1024*1024)
 
 /* ===================== Flash device Configuration ========================= */
-
+extern const struct fal_flash_dev ram_flash_dev;
 extern const struct fal_flash_dev at32_onchip_flash;
 extern struct fal_flash_dev nor_flash0;
 
 /* flash device table */
 #define FAL_FLASH_DEV_TABLE                                          \
 {                                                                    \
+    &ram_flash_dev,                                                      \
     &at32_onchip_flash,                                              \
     &nor_flash0,                                                     \
 }
@@ -52,19 +57,20 @@ extern struct fal_flash_dev nor_flash0;
 /* partition table */
 #define FAL_PART_TABLE                                               \
 {                                                                    \
-    {FAL_PART_MAGIC_WORD,   "BOOT"      , "OnChip"    ,        0,   131072, 0}, \
-    {FAL_PART_MAGIC_WORD,   "APP_A"     , "OnChip"    ,   131072,   262144, 0}, \
-    {FAL_PART_MAGIC_WORD,   "APP_B"     , "OnChip"    ,   393216,   262144, 0}, \
-    {FAL_PART_MAGIC_WORD,   "SYSCFG"    , "OnChip"    ,   655360,   262144, 0}, \
-    {FAL_PART_MAGIC_WORD,   "RESERVED"  , "OnChip"    ,   917504,   131072, 0}, \
-    {FAL_PART_MAGIC_WORD,   "FACTORY"   , "w25q64"    ,        0,   262144, 0}, \
-    {FAL_PART_MAGIC_WORD,   "OTA"       , "w25q64"    ,   262144,   262144, 0}, \
-    {FAL_PART_MAGIC_WORD,   "KVDB"      , "w25q64"    ,   524288,   524288, 0}, \
-    {FAL_PART_MAGIC_WORD,   "TSDB"      , "w25q64"    ,  1048576,   524288, 0}, \
-    {FAL_PART_MAGIC_WORD,   "FS"        , "w25q64"    ,  1572864,  2097152, 0}, \
-    {FAL_PART_MAGIC_WORD,   "USERDATA"  , "w25q64"    ,  3670016,   524288, 0}, \
-    {FAL_PART_MAGIC_WORD,   "LOG"       , "w25q64"    ,  4194304,  1048576, 0}, \
-    {FAL_PART_MAGIC_WORD,   "RESERVED"  , "w25q64"    ,  5242880,  1048576, 0}, \
+    {FAL_PART_MAGIC_WORD,   "ATTR"        , "ram_flash"   ,            0,        10240, 0}, \
+    {FAL_PART_MAGIC_WORD,   "BOOT"        , "onchip_flash",            0,       131072, 0}, \
+    {FAL_PART_MAGIC_WORD,   "APP_A"       , "onchip_flash",       131072,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "APP_B"       , "onchip_flash",       393216,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "SYSCFG"      , "onchip_flash",       655360,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "RESERVED"    , "onchip_flash",       917504,       131072, 0}, \
+    {FAL_PART_MAGIC_WORD,   "FACTORY"     , "w25q64"      ,            0,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "OTA"         , "w25q64"      ,       262144,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "KVDB"        , "w25q64"      ,       524288,       524288, 0}, \
+    {FAL_PART_MAGIC_WORD,   "TSDB"        , "w25q64"      ,      1048576,       524288, 0}, \
+    {FAL_PART_MAGIC_WORD,   "FS"          , "w25q64"      ,      1572864,      2097152, 0}, \
+    {FAL_PART_MAGIC_WORD,   "USERDATA"    , "w25q64"      ,      3670016,       524288, 0}, \
+    {FAL_PART_MAGIC_WORD,   "LOG"         , "w25q64"      ,      4194304,      1048576, 0}, \
+    {FAL_PART_MAGIC_WORD,   "RESERVED"    , "w25q64"      ,      5242880,      1048576, 0}, \
 }
 #endif /* FAL_PART_HAS_TABLE_CFG */
 

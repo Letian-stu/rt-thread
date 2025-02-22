@@ -1,19 +1,17 @@
 #include <rtthread.h>
 #include "drv_common.h"
 
-#ifdef BSP_USING_RAM_FLASH
 #include <string.h>
 
 #if defined(RT_USING_FAL)
 #include "fal.h"
 #endif
 
-//#define DRV_DEBUG
 #define LOG_TAG                "drv.ramflash"
 #include <drv_log.h>
 
 // 定义模拟Flash的RAM空间
-#define RAM_FLASH_SIZE         (8 * 1024)    // 8KB
+#define RAM_FLASH_SIZE         (10 * 1024)   // 10KB
 #define RAM_FLASH_PAGE_SIZE    (256)         // 256 bytes per page
 static uint8_t ram_flash_space[RAM_FLASH_SIZE];
 
@@ -119,4 +117,3 @@ static int fal_ram_flash_erase(long offset, rt_uint32_t size)
 }
 
 #endif
-#endif /* BSP_USING_RAM_FLASH */

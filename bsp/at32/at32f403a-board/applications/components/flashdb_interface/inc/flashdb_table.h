@@ -4,22 +4,20 @@
 #include "flashdb_interface.h"
 #include "flashdb.h"
 
-#define TYPE_U8     "U08_"
-#define TYPE_16     "U16_"
-#define TYPE_32     "U32_"
-#define TYPE_FT     "UFT_"
-#define TYPE_STR    "STR_"
+#define O_TYPE_U8     "O_U08_"
+#define O_TYPE_16     "O_U16_"
+#define O_TYPE_32     "O_U32_"
+#define O_TYPE_FT     "O_UFT_"
+#define O_TYPE_STR    "O_STR_"
 
-#define U32_BOOT_COUNT            "U32_BOOT_COUNT"
-#define U32_SOFT_VSERION          "U32_SOFT_VSERION"
-#define U32_HARD_VSERION          "U32_HARD_VSERION"
-#define STR_VEHICLEVIN            "STR_VEHICLEVIN"
-#define U32_START_OTA             "U32_START_OTA"
-#define STR_HTTPOTA_URL           "STR_HTTPOTA_URL"
+#define O_U32_BOOT_COUNT          "O_U32_BOOT_COUNT"
+#define O_U32_SOFT_VERSION        "O_U32_SOFT_VERSION"
+#define O_U32_HARD_VERSION        "O_U32_HARD_VERSION"
+#define O_STR_VEHICLEVIN          "O_STR_VEHICLEVIN"
+#define O_U32_START_OTA           "O_U32_START_OTA"
+#define O_STR_HTTPOTA_URL         "O_STR_HTTPOTA_URL"
 
-typedef struct fdb_default_kv_node fdb_kv_table_t;
-
-extern const fdb_kv_table_t g_kv_table[];
-extern const size_t g_kv_num;
+extern const fdb_kv_table_t g_flash_kv_table[];
+extern const size_t g_flash_kv_num;
 
 #endif

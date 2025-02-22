@@ -127,7 +127,7 @@ static int http_ota_fw_download(const char* uri)
     LOG_I("\033[1A");
 
     /* Get download partition information and erase download partition data */
-    if ((dl_part = fal_partition_find("ota")) == RT_NULL)
+    if ((dl_part = fal_partition_find("OTA")) == RT_NULL)
     {
         LOG_E("Firmware download failed! Partition (%s) find error!", "download");
         ret = -RT_ERROR;

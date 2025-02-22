@@ -11,8 +11,7 @@
 #define HTTP_OTA_URL_MAX_LEN        (64)
 
 #define HTTP_OTA_URL                "http://k3m35k.natappfree.cc/ota-v1.1.0.rbl"
-#define HTTP_OTA_PART_NAME          "ota"
-
+#define HTTP_OTA_PART_NAME          "OTA"
 
 enum{
     THTTP_OTA_FSM_NET_CONNECT = 0,

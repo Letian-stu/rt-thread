@@ -4,20 +4,18 @@
 #include "flashdb_interface.h"
 #include "flashdb.h"
 
-#define TYPE_U8     "U08_"
-#define TYPE_16     "U16_"
-#define TYPE_32     "U32_"
-#define TYPE_FT     "UFT_"
-#define TYPE_STR    "STR_"
+#define O_TYPE_U8     "O_U08_"
+#define O_TYPE_16     "O_U16_"
+#define O_TYPE_32     "O_U32_"
+#define O_TYPE_FT     "O_UFT_"
+#define O_TYPE_STR    "O_STR_"
 
 {% for var in variables %}
 #define {{ "{:<25}".format(var.macro_name) }} "{{ var.macro_name }}"
 {% endfor %}
 
-typedef struct fdb_default_kv_node fdb_kv_table_t;
-
-extern const fdb_kv_table_t g_kv_table[];
-extern const size_t g_kv_num;
+extern const fdb_kv_table_t g_flash_kv_table[];
+extern const size_t g_flash_kv_num;
 
 #endif
 

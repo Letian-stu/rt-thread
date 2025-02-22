@@ -1,67 +1,78 @@
-/*
- * Copyright (c) 2006-2018, RT-Thread Development Team
- *
- * SPDX-License-Identifier: Apache-2.0
- *
- * Change Logs:
- * Date           Author       Notes
- * 2018-05-17     armink       the first version
- */
-
 #ifndef _FAL_CFG_H_
 #define _FAL_CFG_H_
 
 #include <rtconfig.h>
 #include <board.h>
 
-#define ONCHIP_FLASH_DEV_NAME          "onchip_flash"
-#define NOR_FLASH_DEV_NAME             "w25q64"
+#define RAM_FLASH_DEV_NAME                          "ram_flash"
+#define ONCHIP_FLASH_DEV_NAME                       "onchip_flash"
+#define NOR_FLASH_DEV_NAME                          "w25q64"
 
-#define FAL_ONCHIP_START_ADDR_BOOT          0
-#define FAL_ONCHIP_MAX_LEN_BOOT             (256*1024)
-#define FAL_ONCHIP_START_ADDR_APP           FAL_ONCHIP_START_ADDR_BOOT + FAL_ONCHIP_MAX_LEN_BOOT
-#define FAL_ONCHIP_MAX_LEN_APP              (512*1024)
-#define FAL_ONCHIP_START_ADDR_KVDB          FAL_ONCHIP_START_ADDR_APP + FAL_ONCHIP_MAX_LEN_APP
-#define FAL_ONCHIP_MAX_LEN_KVDB             (128*1024)
-#define FAL_ONCHIP_START_ADDR_TSDB          FAL_ONCHIP_START_ADDR_KVDB + FAL_ONCHIP_MAX_LEN_KVDB
-#define FAL_ONCHIP_MAX_LEN_TSDB             (128*1024)
+#define FAL_RAM_START_ADDR_ATTR                     0
+#define FAL_RAM_MAX_LEN_ATTR                        (10*1024)
 
-#define FAL_NORFLASH_START_ADDR_KVDB        0
-#define FAL_NORFLASH_MAX_LEN_KVDB           (1024*1024)
-#define FAL_NORFLASH_START_ADDR_TSDB        FAL_NORFLASH_START_ADDR_KVDB + FAL_NORFLASH_MAX_LEN_KVDB
-#define FAL_NORFLASH_MAX_LEN_TSDB           (1024*1024)
-#define FAL_NORFLASH_START_ADDR_OTA         FAL_NORFLASH_START_ADDR_TSDB + FAL_NORFLASH_MAX_LEN_TSDB
-#define FAL_NORFLASH_MAX_LEN_OTA            (512*1024)
-#define FAL_NORFLASH_START_ADDR_FACTORY     FAL_NORFLASH_START_ADDR_OTA + FAL_NORFLASH_MAX_LEN_OTA
-#define FAL_NORFLASH_MAX_LEN_FACTORY        (512*1024)
-#define FAL_NORFLASH_START_ADDR_FS          FAL_NORFLASH_START_ADDR_FACTORY + FAL_NORFLASH_MAX_LEN_FACTORY
-#define FAL_NORFLASH_MAX_LEN_FS             (5*1024*1024)
+#define FAL_ONCHIP_START_ADDR_BOOT                  0
+#define FAL_ONCHIP_MAX_LEN_BOOT                     (128*1024)
+#define FAL_ONCHIP_START_ADDR_APP_A                 131072
+#define FAL_ONCHIP_MAX_LEN_APP_A                    (256*1024)
+#define FAL_ONCHIP_START_ADDR_APP_B                 393216
+#define FAL_ONCHIP_MAX_LEN_APP_B                    (256*1024)
+#define FAL_ONCHIP_START_ADDR_SYSCFG                655360
+#define FAL_ONCHIP_MAX_LEN_SYSCFG                   (256*1024)
+#define FAL_ONCHIP_START_ADDR_RESERVED              917504
+#define FAL_ONCHIP_MAX_LEN_RESERVED                 (128*1024)
+
+#define FAL_NORFLASH_START_ADDR_FACTORY             0
+#define FAL_NORFLASH_MAX_LEN_FACTORY                (256*1024)
+#define FAL_NORFLASH_START_ADDR_OTA                 262144
+#define FAL_NORFLASH_MAX_LEN_OTA                    (256*1024)
+#define FAL_NORFLASH_START_ADDR_KVDB                524288
+#define FAL_NORFLASH_MAX_LEN_KVDB                   (512*1024)
+#define FAL_NORFLASH_START_ADDR_TSDB                1048576
+#define FAL_NORFLASH_MAX_LEN_TSDB                   (512*1024)
+#define FAL_NORFLASH_START_ADDR_FS                  1572864
+#define FAL_NORFLASH_MAX_LEN_FS                     (2048*1024)
+#define FAL_NORFLASH_START_ADDR_USERDATA            3670016
+#define FAL_NORFLASH_MAX_LEN_USERDATA               (512*1024)
+#define FAL_NORFLASH_START_ADDR_LOG                 4194304
+#define FAL_NORFLASH_MAX_LEN_LOG                    (1024*1024)
+#define FAL_NORFLASH_START_ADDR_RESERVED            5242880
+#define FAL_NORFLASH_MAX_LEN_RESERVED               (1024*1024)
+
 /* ===================== Flash device Configuration ========================= */
-
-extern const struct fal_flash_dev onchip_flash;
+extern const struct fal_flash_dev ram_flash_dev;
+extern const struct fal_flash_dev at32_onchip_flash;
 extern struct fal_flash_dev nor_flash0;
 
 /* flash device table */
 #define FAL_FLASH_DEV_TABLE                                          \
 {                                                                    \
-    &onchip_flash,                                                   \
+    &ram_flash_dev,                                                      \
+    &at32_onchip_flash,                                              \
     &nor_flash0,                                                     \
 }
+
 /* ====================== Partition Configuration ========================== */
 #ifdef FAL_PART_HAS_TABLE_CFG
 /* partition table */
-#define FAL_PART_TABLE                                                               \
-{      																				 \
-    {FAL_PART_MAGIC_WROD,        "bl",      ONCHIP_FLASH_DEV_NAME,         FAL_ONCHIP_START_ADDR_BOOT,         FAL_ONCHIP_MAX_LEN_BOOT, 0}, \
-    {FAL_PART_MAGIC_WROD,       "app",      ONCHIP_FLASH_DEV_NAME,          FAL_ONCHIP_START_ADDR_APP,          FAL_ONCHIP_MAX_LEN_APP, 0}, \
-    {FAL_PART_MAGIC_WROD, "fdb_kvdb1",      ONCHIP_FLASH_DEV_NAME,         FAL_ONCHIP_START_ADDR_KVDB,         FAL_ONCHIP_MAX_LEN_KVDB, 0}, \
-    {FAL_PART_MAGIC_WROD, "fdb_tsdb1",      ONCHIP_FLASH_DEV_NAME,         FAL_ONCHIP_START_ADDR_TSDB,         FAL_ONCHIP_MAX_LEN_TSDB, 0}, \
-    {FAL_PART_MAGIC_WORD, "fdb_kvdb2",         NOR_FLASH_DEV_NAME,       FAL_NORFLASH_START_ADDR_KVDB,       FAL_NORFLASH_MAX_LEN_KVDB, 0}, \
-    {FAL_PART_MAGIC_WORD, "fdb_kvdb2",         NOR_FLASH_DEV_NAME,       FAL_NORFLASH_START_ADDR_TSDB,       FAL_NORFLASH_MAX_LEN_TSDB, 0}, \
-    {FAL_PART_MAGIC_WORD,       "ota",         NOR_FLASH_DEV_NAME,        FAL_NORFLASH_START_ADDR_OTA,        FAL_NORFLASH_MAX_LEN_OTA, 0}, \
-    {FAL_PART_MAGIC_WORD,   "factory",         NOR_FLASH_DEV_NAME,    FAL_NORFLASH_START_ADDR_FACTORY,    FAL_NORFLASH_MAX_LEN_FACTORY, 0}, \
-    {FAL_PART_MAGIC_WORD,        "fs",         NOR_FLASH_DEV_NAME,         FAL_NORFLASH_START_ADDR_FS,         FAL_NORFLASH_MAX_LEN_FS, 0}, \
+#define FAL_PART_TABLE                                               \
+{                                                                    \
+    {FAL_PART_MAGIC_WORD,   "ATTR"        , "ram_flash"   ,            0,        10240, 0}, \
+    {FAL_PART_MAGIC_WORD,   "BOOT"        , "onchip_flash",            0,       131072, 0}, \
+    {FAL_PART_MAGIC_WORD,   "APP_A"       , "onchip_flash",       131072,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "APP_B"       , "onchip_flash",       393216,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "SYSCFG"      , "onchip_flash",       655360,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "RESERVED"    , "onchip_flash",       917504,       131072, 0}, \
+    {FAL_PART_MAGIC_WORD,   "FACTORY"     , "w25q64"      ,            0,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "OTA"         , "w25q64"      ,       262144,       262144, 0}, \
+    {FAL_PART_MAGIC_WORD,   "KVDB"        , "w25q64"      ,       524288,       524288, 0}, \
+    {FAL_PART_MAGIC_WORD,   "TSDB"        , "w25q64"      ,      1048576,       524288, 0}, \
+    {FAL_PART_MAGIC_WORD,   "FS"          , "w25q64"      ,      1572864,      2097152, 0}, \
+    {FAL_PART_MAGIC_WORD,   "USERDATA"    , "w25q64"      ,      3670016,       524288, 0}, \
+    {FAL_PART_MAGIC_WORD,   "LOG"         , "w25q64"      ,      4194304,      1048576, 0}, \
+    {FAL_PART_MAGIC_WORD,   "RESERVED"    , "w25q64"      ,      5242880,      1048576, 0}, \
 }
 #endif /* FAL_PART_HAS_TABLE_CFG */
 
 #endif /* _FAL_CFG_H_ */
+ 

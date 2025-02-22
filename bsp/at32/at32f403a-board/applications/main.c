@@ -60,7 +60,7 @@ int rt_fal_init(void)
 INIT_COMPONENT_EXPORT(rt_fal_init);
 
 
-#define FS_PARTITION_NAME "fs"
+#define FS_PARTITION_NAME "FS"
 
 int dfs_mount_init(void)
 {
@@ -108,12 +108,12 @@ void show_version(void)
 int main(void)
 {
 	show_version();
-    PmuTaskCreate(&g_pmu_task);
+	PmuTaskCreate(&g_pmu_task);
 	rt_uint32_t tick = 0;
-    while (1)
-    {
-        PmuTaskRunOnce();
-        rt_thread_mdelay(1000);
-        task_msg_publish(MSG_BUS_EVENT_RUN1S, RT_NULL);
-    }
+	while (1)
+	{
+		PmuTaskRunOnce();
+		rt_thread_mdelay(1000);
+		task_msg_publish(MSG_BUS_EVENT_RUN1S, RT_NULL);
+	}
 }

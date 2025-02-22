@@ -1576,7 +1576,7 @@ static bool check_sec_hdr_cb(kv_sec_info_t sector, void *arg1, void *arg2)
         if (db->parent.not_formatable) {
             return true;
         } else {
-            FDB_INFO("Sector header info is incorrect. Auto format this sector (0x%08" PRIX32 ").\n", sector->addr);
+            //FDB_INFO("Sector header info is incorrect. Auto format this sector (0x%08" PRIX32 ").\n", sector->addr);
             format_sector(db, sector->addr, SECTOR_NOT_COMBINED);
         }
     }

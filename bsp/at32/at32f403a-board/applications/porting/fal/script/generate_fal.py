@@ -7,64 +7,66 @@ def rjust_filter(value, width):
 
 def read_partition_table(file_path):
     """读取Excel中的分区表并打印出来"""
-    wb = load_workbook(file_path, data_only=True)  # Open the workbook and get only the evaluated values
-    ws = wb.active  # Assuming the relevant data is in the first sheet
+    wb = load_workbook(file_path, data_only=True)
+    ws = wb.active
 
-    # Store partition data
+    # 存储分区数据
     onchip_partitions = []
     nor_partitions = []
+    ram_partitions = []  # 新增RAM分区列表
 
-    # Iterate over the rows and extract partition info
-    for row in ws.iter_rows(min_row=2, values_only=True):  # Skip header row
+    for row in ws.iter_rows(min_row=2, values_only=True):
         try:
             size_kb = float(row[4]) if row[4] is not None else 0
             start_addr_decimal = row[2]
             start_addr_hex = row[3]
 
             partition = {
-                'dev': row[0],  # Device name ("OnChip" or "w25q64")
-                'name': row[1],  # Partition name
-                'start_addr': start_addr_decimal,  # Start address
-                'start_hex': start_addr_hex,      # Start address in hex
-                'size_kb': size_kb,               # Size in KB
-                'size_bytes': int(size_kb*1024)       # Size in bytes
+                'dev': row[0],
+                'name': row[1],
+                'start_addr': start_addr_decimal,
+                'start_hex': start_addr_hex,
+                'size_kb': size_kb,
+                'size_bytes': int(size_kb*1024)
             }
 
             if row[0] == "OnChip":
                 onchip_partitions.append(partition)
             elif row[0] == "w25q64":
                 nor_partitions.append(partition)
+            elif row[0] == "RAM":  # 新增RAM设备类型判断
+                ram_partitions.append(partition)
 
         except (ValueError, TypeError) as e:
             print(f"Skipping invalid row: {row}. Error: {e}")
 
-    return onchip_partitions, nor_partitions
+    return onchip_partitions, nor_partitions, ram_partitions
 
-def generate_cfg_file(onchip_partitions, nor_partitions, template_path, output_path):
+def generate_cfg_file(onchip_partitions, nor_partitions, ram_partitions, template_path, output_path):
     """Render the template and generate the fal_cfg.h file"""
-    # Set up the Jinja2 environment with whitespace trimming
     env = Environment(
         loader=FileSystemLoader(template_path),
-        trim_blocks=True,  # Trim newlines after blocks
-        lstrip_blocks=True  # Remove leading whitespaces from blocks
+        trim_blocks=True,
+        lstrip_blocks=True
     )
-    env.filters['rjust'] = rjust_filter  # 注册自定义过滤器
+    env.filters['rjust'] = rjust_filter
 
     template = env.get_template('fal_cfg_template.h.j2')
 
-    # Get the device names from the first partition entry (assuming there is at least one partition)
+    # 获取设备名称
     onchip_device = onchip_partitions[0]['dev'] if onchip_partitions else 'onchip_flash'
     nor_device = nor_partitions[0]['dev'] if nor_partitions else 'w25q64'
+    ram_device = ram_partitions[0]['dev'] if ram_partitions else 'ram'  # 新增RAM设备名称
 
-    # Prepare data for template rendering
     data = {
         'onchip_device_macro': onchip_device,
         'nor_device_macro': nor_device,
+        'ram_device_macro': ram_device,  # 新增RAM设备宏
         'onchip_partitions': onchip_partitions,
-        'nor_partitions': nor_partitions
+        'nor_partitions': nor_partitions,
+        'ram_partitions': ram_partitions  # 新增RAM分区数据
     }
 
-    # Render the template with data and write to the output file
     with open(output_path, 'w') as f:
         f.write(template.render(data))
 
@@ -75,5 +77,5 @@ file_path = 'fal.xlsx'  # Path to the uploaded Excel file
 template_path = 'templates'     # Directory where the template is stored
 output_path = 'out/fal_cfg.h'  # Output file path
 
-onchip_partitions, nor_partitions = read_partition_table(file_path)
-generate_cfg_file(onchip_partitions, nor_partitions, template_path, output_path)
+onchip_partitions, nor_partitions, ram_partitions = read_partition_table(file_path)
+generate_cfg_file(onchip_partitions, nor_partitions, ram_partitions, template_path, output_path)

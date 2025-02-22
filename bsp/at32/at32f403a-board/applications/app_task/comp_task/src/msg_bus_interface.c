@@ -1,8 +1,7 @@
 #include "msg_bus_interface.h"
 #include "task_msg_bus.h"
 
-#ifdef LOG_TAG
-#undef LOG_TAG
+#ifdef LOG_TAG 
 #define LOG_TAG "msg_bus_interface"
 #endif
 #define LOG_LVL     LOG_LVL_INFO   

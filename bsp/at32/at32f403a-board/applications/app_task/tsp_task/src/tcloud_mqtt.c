@@ -3,8 +3,7 @@
 #include "at_device.h"
 #include "blib.h"
 
-#ifdef LOG_TAG
-#undef LOG_TAG
+#ifdef LOG_TAG 
 #define LOG_TAG "TCloud"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  

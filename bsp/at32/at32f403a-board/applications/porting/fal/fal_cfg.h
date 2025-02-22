@@ -38,13 +38,13 @@
 #define FAL_NORFLASH_MAX_LEN_FS             (5*1024*1024)
 /* ===================== Flash device Configuration ========================= */
 
-extern const struct fal_flash_dev at32_onchip_flash;
+extern const struct fal_flash_dev onchip_flash;
 extern struct fal_flash_dev nor_flash0;
 
 /* flash device table */
 #define FAL_FLASH_DEV_TABLE                                          \
 {                                                                    \
-    &at32_onchip_flash,                                              \
+    &onchip_flash,                                                   \
     &nor_flash0,                                                     \
 }
 /* ====================== Partition Configuration ========================== */

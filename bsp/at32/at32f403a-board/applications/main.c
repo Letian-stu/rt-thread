@@ -15,8 +15,7 @@
 #include "flashdb.h"
 #include "dfs_fs.h"
  
-#ifdef LOG_TAG
-#undef LOG_TAG
+#ifdef LOG_TAG 
 #define LOG_TAG "main"
 #endif
 #define LOG_LVL     LOG_LVL_DBG   

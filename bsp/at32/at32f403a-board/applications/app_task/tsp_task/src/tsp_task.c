@@ -3,8 +3,7 @@
 #include "msg_bus_interface.h"
 #include "tsp_task.h"
 
-#ifdef LOG_TAG
-#undef LOG_TAG
+#ifdef LOG_TAG 
 #define LOG_TAG "TTsp_Task"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  

@@ -12,8 +12,7 @@
 
 #include "flashdb_table.h"
 
-#ifdef LOG_TAG
-#undef LOG_TAG
+#ifdef LOG_TAG 
 #define LOG_TAG "tsp_http_ota"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  

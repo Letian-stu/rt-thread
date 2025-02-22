@@ -1,8 +1,7 @@
 #include "flashdb_interface.h"
 #include "flashdb_table.h"
 
-#ifdef LOG_TAG
-#undef LOG_TAG
+#ifdef LOG_TAG 
 #define LOG_TAG "fdb_interface"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  

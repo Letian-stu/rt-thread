@@ -3,8 +3,7 @@
 #include "rtdevice.h"
 #include "drivers/can.h"
 
-#ifdef LOG_TAG
-#undef LOG_TAG
+#ifdef LOG_TAG 
 #define LOG_TAG "can_interface"
 #endif
 #define LOG_LVL     LOG_LVL_DBG  

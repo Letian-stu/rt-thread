@@ -1,8 +1,7 @@
 #include "pmu_task.h"
 #include "pmu_task_manage.h"
 
-#ifdef LOG_TAG
-#undef LOG_TAG
+#ifdef LOG_TAG 
 #define LOG_TAG "pmu_task"
 #endif
 #define LOG_LVL     LOG_LVL_DBG   

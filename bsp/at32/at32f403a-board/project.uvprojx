@@ -339,7 +339,7 @@
               <MiscControls>--gnu</MiscControls>
               <Define>__STDC_LIMIT_MACROS, RT_USING_ARMLIBC, USE_STDPERIPH_DRIVER, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, AT32F403ARGT7, __RTTHREAD__</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\components\finsh;applications\components\gnss_interface;applications\components\ramfal_interface;..\..\..\components\libc\posix\io\stdio;..\..\..\components\drivers\include;applications\app_task\tsp_task;packages\at_device-latest\class\air720;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support;applications\components\blib;packages\FlashDB-v2.1.0\inc;..\..\..\components\drivers\include;..\..\..\components\net\at\at_socket;..\..\..\libcpu\arm\cortex-m4;..\..\..\components\libc\posix\io\eventfd;..\..\..\components\drivers\include;..\..\..\components\net\at\include;packages\pahomqtt-latest\MQTTPacket\src;..\libraries\AT32F403A_407_Firmware_Library\drivers\inc;..\..\..\components\utilities\ulog\backend;board;applications\app_task\demo_cmd;..\..\..\include;..\..\..\components\utilities\resource;packages\ota_downloader-v1.0.0;..\..\..\components\libc\posix\io\epoll;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\components\net\sal\include\dfs_net;..\..\..\components\drivers\include;..\..\..\components\libc\compilers\common\include;applications\app_task\can_task;applications\app_task\demo_cmd\inc;applications\app_task\comp_task;applications\app_task\ota_task;..\..\..\components\net\sal\impl;..\..\..\components\net\netdev\include;..\libraries\rt_drivers;applications\components\flashdb_interface\inc;applications\app_task\pmu_task;..\..\..\components\libc\posix\ipc;..\..\..\components\drivers\spi;applications\app_task\tsp_task\inc;..\..\..\components\dfs\dfs_v1\filesystems\elmfat;applications\components\blib\inc;..\..\..\components\legacy\dfs;..\..\..\libcpu\arm\common;..\..\..\components\utilities\ymodem;..\..\..\components\net\sal\include;applications\components\gnss_interface\inc;..\..\..\components\drivers\spi\sfud\inc;.;..\..\..\components\drivers\include;..\..\..\components\utilities\ulog;packages\pahomqtt-latest\MQTTClient-RT;packages\TaskMsgBus-v3.0.1\inc;..\..\..\components\dfs\dfs_v1\include;applications\app_task\pmu_task\inc;packages\at_device-latest\inc;..\..\..\components\libc\posix\io\poll;applications\app_task\ota_task\inc;..\..\..\components\net\sal\include\socket\sys_socket;applications\app_task\can_task\inc;applications\porting\fal;..\libraries\rt_drivers\config;..\..\..\components\net\sal\include\socket;..\..\..\components\dfs\dfs_v1\filesystems\devfs;packages\webclient-v2.2.0\inc;applications\app_task\comp_task\inc;packages\nmealib-latest\include;..\..\..\components\drivers\include;applications\components\ramfal_interface\inc;..\libraries\usbd_library\inc;applications;..\..\..\components\fal\inc;..\..\..\components\libc\compilers\common\extension;packages\cJSON-v1.7.17;..\..\..\components\drivers\include;..\..\..\components\legacy;applications\components\flashdb_interface;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\core_support;board\inc</IncludePath>
+              <IncludePath>..\..\..\components\finsh;applications\components\gnss_interface;..\..\..\components\libc\posix\io\stdio;..\..\..\components\drivers\include;applications\app_task\tsp_task;packages\at_device-latest\class\air720;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\device_support;applications\components\blib;packages\FlashDB-v2.1.0\inc;..\..\..\components\drivers\include;..\..\..\components\net\at\at_socket;..\..\..\libcpu\arm\cortex-m4;..\..\..\components\libc\posix\io\eventfd;..\..\..\components\drivers\include;..\..\..\components\net\at\include;packages\pahomqtt-latest\MQTTPacket\src;..\libraries\AT32F403A_407_Firmware_Library\drivers\inc;..\..\..\components\utilities\ulog\backend;board;applications\app_task\demo_cmd;..\..\..\include;..\..\..\components\utilities\resource;packages\ota_downloader-v1.0.0;..\..\..\components\libc\posix\io\epoll;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\..\..\components\net\sal\include\dfs_net;..\..\..\components\drivers\include;..\..\..\components\libc\compilers\common\include;applications\app_task\can_task;applications\app_task\demo_cmd\inc;applications\app_task\comp_task;applications\app_task\ota_task;..\..\..\components\net\sal\impl;applications\components\version;..\..\..\components\net\netdev\include;..\libraries\rt_drivers;applications\components\flashdb_interface\inc;applications\app_task\pmu_task;..\..\..\components\libc\posix\ipc;..\..\..\components\drivers\spi;applications\app_task\tsp_task\inc;..\..\..\components\dfs\dfs_v1\filesystems\elmfat;applications\components\blib\inc;..\..\..\components\legacy\dfs;..\..\..\libcpu\arm\common;..\..\..\components\utilities\ymodem;..\..\..\components\net\sal\include;applications\components\gnss_interface\inc;..\..\..\components\drivers\spi\sfud\inc;.;..\..\..\components\drivers\include;..\..\..\components\utilities\ulog;packages\pahomqtt-latest\MQTTClient-RT;packages\TaskMsgBus-v3.0.1\inc;..\..\..\components\dfs\dfs_v1\include;applications\app_task\pmu_task\inc;packages\at_device-latest\inc;..\..\..\components\libc\posix\io\poll;applications\app_task\ota_task\inc;..\..\..\components\net\sal\include\socket\sys_socket;applications\app_task\can_task\inc;applications\porting\fal;..\libraries\rt_drivers\config;..\..\..\components\net\sal\include\socket;..\..\..\components\dfs\dfs_v1\filesystems\devfs;packages\webclient-v2.2.0\inc;applications\app_task\comp_task\inc;packages\nmealib-latest\include;..\..\..\components\drivers\include;..\libraries\usbd_library\inc;applications;..\..\..\components\fal\inc;applications\components\version\inc;..\..\..\components\libc\compilers\common\extension;packages\cJSON-v1.7.17;..\..\..\components\drivers\include;..\..\..\components\legacy;applications\components\flashdb_interface;..\libraries\AT32F403A_407_Firmware_Library\cmsis\cm4\core_support;board\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -394,9 +394,9 @@
           <GroupName>AT</GroupName>
           <Files>
             <File>
-              <FileName>at_cli.c</FileName>
+              <FileName>at_client.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\at\src\at_cli.c</FilePath>
+              <FilePath>..\..\..\components\net\at\src\at_client.c</FilePath>
             </File>
             <File>
               <FileName>at_utils.c</FileName>
@@ -404,14 +404,14 @@
               <FilePath>..\..\..\components\net\at\src\at_utils.c</FilePath>
             </File>
             <File>
-              <FileName>at_client.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\net\at\src\at_client.c</FilePath>
-            </File>
-            <File>
               <FileName>at_socket.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\net\at\at_socket\at_socket.c</FilePath>
+            </File>
+            <File>
+              <FileName>at_cli.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\net\at\src\at_cli.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -419,14 +419,14 @@
           <GroupName>at_device</GroupName>
           <Files>
             <File>
-              <FileName>at_device.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\at_device-latest\src\at_device.c</FilePath>
-            </File>
-            <File>
               <FileName>at_socket_air720.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\at_device-latest\class\air720\at_socket_air720.c</FilePath>
+            </File>
+            <File>
+              <FileName>at_sample_air720.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\at_device-latest\samples\at_sample_air720.c</FilePath>
             </File>
             <File>
               <FileName>at_device_air720.c</FileName>
@@ -434,9 +434,9 @@
               <FilePath>packages\at_device-latest\class\air720\at_device_air720.c</FilePath>
             </File>
             <File>
-              <FileName>at_sample_air720.c</FileName>
+              <FileName>at_device.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\at_device-latest\samples\at_sample_air720.c</FilePath>
+              <FilePath>packages\at_device-latest\src\at_device.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -444,14 +444,14 @@
           <GroupName>can_task</GroupName>
           <Files>
             <File>
-              <FileName>can_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\app_task\can_task\src\can_task.c</FilePath>
-            </File>
-            <File>
               <FileName>can_interface.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\app_task\can_task\src\can_interface.c</FilePath>
+            </File>
+            <File>
+              <FileName>can_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\app_task\can_task\src\can_task.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1617,19 +1617,19 @@
           <GroupName>Fal</GroupName>
           <Files>
             <File>
+              <FileName>fal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\src\fal_flash.c</FilePath>
+            </File>
+            <File>
               <FileName>fal_partition.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\fal\src\fal_partition.c</FilePath>
             </File>
             <File>
-              <FileName>fal_flash_sfud_port.c</FileName>
+              <FileName>fal.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\fal\samples\porting\fal_flash_sfud_port.c</FilePath>
-            </File>
-            <File>
-              <FileName>fal_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fal\src\fal_flash.c</FilePath>
+              <FilePath>..\..\..\components\fal\src\fal.c</FilePath>
             </File>
             <File>
               <FileName>fal_rtt.c</FileName>
@@ -1637,9 +1637,9 @@
               <FilePath>..\..\..\components\fal\src\fal_rtt.c</FilePath>
             </File>
             <File>
-              <FileName>fal.c</FileName>
+              <FileName>fal_flash_sfud_port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\fal\src\fal.c</FilePath>
+              <FilePath>..\..\..\components\fal\samples\porting\fal_flash_sfud_port.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1647,9 +1647,9 @@
           <GroupName>fdb_interface</GroupName>
           <Files>
             <File>
-              <FileName>flashdb_interface.c</FileName>
+              <FileName>ramdb_table.c</FileName>
               <FileType>1</FileType>
-              <FilePath>applications\components\flashdb_interface\src\flashdb_interface.c</FilePath>
+              <FilePath>applications\components\flashdb_interface\src\ramdb_table.c</FilePath>
             </File>
             <File>
               <FileName>flashdb_table.c</FileName>
@@ -1657,9 +1657,9 @@
               <FilePath>applications\components\flashdb_interface\src\flashdb_table.c</FilePath>
             </File>
             <File>
-              <FileName>ramdb_table.c</FileName>
+              <FileName>flashdb_interface.c</FileName>
               <FileType>1</FileType>
-              <FilePath>applications\components\flashdb_interface\src\ramdb_table.c</FilePath>
+              <FilePath>applications\components\flashdb_interface\src\flashdb_interface.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1742,14 +1742,19 @@
           <GroupName>FlashDB</GroupName>
           <Files>
             <File>
-              <FileName>fdb_utils.c</FileName>
+              <FileName>kvdb_type_string_sample.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\src\fdb_utils.c</FilePath>
+              <FilePath>packages\FlashDB-v2.1.0\samples\kvdb_type_string_sample.c</FilePath>
             </File>
             <File>
-              <FileName>fdb_cmd.c</FileName>
+              <FileName>tsdb_sample.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\src\fdb_cmd.c</FilePath>
+              <FilePath>packages\FlashDB-v2.1.0\samples\tsdb_sample.c</FilePath>
+            </File>
+            <File>
+              <FileName>fdb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb.c</FilePath>
             </File>
             <File>
               <FileName>fdb_file.c</FileName>
@@ -1767,24 +1772,19 @@
               <FilePath>packages\FlashDB-v2.1.0\src\fdb_tsdb.c</FilePath>
             </File>
             <File>
-              <FileName>kvdb_type_string_sample.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\samples\kvdb_type_string_sample.c</FilePath>
-            </File>
-            <File>
               <FileName>kvdb_type_blob_sample.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\FlashDB-v2.1.0\samples\kvdb_type_blob_sample.c</FilePath>
             </File>
             <File>
-              <FileName>fdb.c</FileName>
+              <FileName>fdb_cmd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\src\fdb.c</FilePath>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_cmd.c</FilePath>
             </File>
             <File>
-              <FileName>tsdb_sample.c</FileName>
+              <FileName>fdb_utils.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\FlashDB-v2.1.0\samples\tsdb_sample.c</FilePath>
+              <FilePath>packages\FlashDB-v2.1.0\src\fdb_utils.c</FilePath>
             </File>
             <File>
               <FileName>fdb_kvdb.c</FileName>
@@ -2883,9 +2883,9 @@
           <GroupName>nmealib</GroupName>
           <Files>
             <File>
-              <FileName>gmath.c</FileName>
+              <FileName>parse.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\nmealib-latest\src\gmath.c</FilePath>
+              <FilePath>packages\nmealib-latest\src\parse.c</FilePath>
             </File>
             <File>
               <FileName>tok.c</FileName>
@@ -2893,29 +2893,9 @@
               <FilePath>packages\nmealib-latest\src\tok.c</FilePath>
             </File>
             <File>
-              <FileName>generator.c</FileName>
+              <FileName>sentence.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\nmealib-latest\src\generator.c</FilePath>
-            </File>
-            <File>
-              <FileName>parse.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\nmealib-latest\src\parse.c</FilePath>
-            </File>
-            <File>
-              <FileName>time.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\nmealib-latest\src\time.c</FilePath>
-            </File>
-            <File>
-              <FileName>context.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\nmealib-latest\src\context.c</FilePath>
-            </File>
-            <File>
-              <FileName>info.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\nmealib-latest\src\info.c</FilePath>
+              <FilePath>packages\nmealib-latest\src\sentence.c</FilePath>
             </File>
             <File>
               <FileName>generate.c</FileName>
@@ -2923,14 +2903,34 @@
               <FilePath>packages\nmealib-latest\src\generate.c</FilePath>
             </File>
             <File>
-              <FileName>sentence.c</FileName>
+              <FileName>gmath.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\nmealib-latest\src\sentence.c</FilePath>
+              <FilePath>packages\nmealib-latest\src\gmath.c</FilePath>
+            </File>
+            <File>
+              <FileName>context.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\nmealib-latest\src\context.c</FilePath>
+            </File>
+            <File>
+              <FileName>generator.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\nmealib-latest\src\generator.c</FilePath>
             </File>
             <File>
               <FileName>parser.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\nmealib-latest\src\parser.c</FilePath>
+            </File>
+            <File>
+              <FileName>time.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\nmealib-latest\src\time.c</FilePath>
+            </File>
+            <File>
+              <FileName>info.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\nmealib-latest\src\info.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2968,44 +2968,9 @@
           <GroupName>paho-mqtt</GroupName>
           <Files>
             <File>
-              <FileName>MQTTDeserializePublish.c</FileName>
+              <FileName>MQTTSubscribeClient.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTDeserializePublish.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTConnectClient.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTConnectClient.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTFormat.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTFormat.c</FilePath>
-            </File>
-            <File>
-              <FileName>paho_mqtt_pipe.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTClient-RT\paho_mqtt_pipe.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTPacket.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTPacket.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTSerializePublish.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTSerializePublish.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTSubscribeServer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTSubscribeServer.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTConnectServer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTConnectServer.c</FilePath>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTSubscribeClient.c</FilePath>
             </File>
             <File>
               <FileName>MQTTUnsubscribeClient.c</FileName>
@@ -3013,9 +2978,29 @@
               <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTUnsubscribeClient.c</FilePath>
             </File>
             <File>
-              <FileName>mqtt_test.c</FileName>
+              <FileName>MQTTFormat.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\tests\mqtt_test.c</FilePath>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTFormat.c</FilePath>
+            </File>
+            <File>
+              <FileName>mqtt_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\pahomqtt-latest\samples\mqtt_sample.c</FilePath>
+            </File>
+            <File>
+              <FileName>paho_mqtt_pipe.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\pahomqtt-latest\MQTTClient-RT\paho_mqtt_pipe.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSubscribeServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTSubscribeServer.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTPacket.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTPacket.c</FilePath>
             </File>
             <File>
               <FileName>MQTTUnsubscribeServer.c</FileName>
@@ -3023,14 +3008,29 @@
               <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTUnsubscribeServer.c</FilePath>
             </File>
             <File>
-              <FileName>MQTTSubscribeClient.c</FileName>
+              <FileName>MQTTDeserializePublish.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTSubscribeClient.c</FilePath>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTDeserializePublish.c</FilePath>
             </File>
             <File>
-              <FileName>mqtt_sample.c</FileName>
+              <FileName>mqtt_test.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\pahomqtt-latest\samples\mqtt_sample.c</FilePath>
+              <FilePath>packages\pahomqtt-latest\tests\mqtt_test.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTSerializePublish.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTSerializePublish.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTConnectClient.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTConnectClient.c</FilePath>
+            </File>
+            <File>
+              <FileName>MQTTConnectServer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\pahomqtt-latest\MQTTPacket\src\MQTTConnectServer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3046,6 +3046,16 @@
               <FileName>pmu_task_manage.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\app_task\pmu_task\src\pmu_task_manage.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>port_fal</GroupName>
+          <Files>
+            <File>
+              <FileName>ram_fal_dev.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\porting\fal\src\ram_fal_dev.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3066,16 +3076,6 @@
               <FileName>stdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\libc\posix\io\stdio\stdio.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>rfal_interface</GroupName>
-          <Files>
-            <File>
-              <FileName>ram_fal_dev.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\components\ramfal_interface\src\ram_fal_dev.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3148,14 +3148,14 @@
               <FilePath>applications\app_task\tsp_task\src\tsp_task.c</FilePath>
             </File>
             <File>
-              <FileName>tcloud_mqtt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>applications\app_task\tsp_task\src\tcloud_mqtt.c</FilePath>
-            </File>
-            <File>
               <FileName>tcloud_attrsync.c</FileName>
               <FileType>1</FileType>
               <FilePath>applications\app_task\tsp_task\src\tcloud_attrsync.c</FilePath>
+            </File>
+            <File>
+              <FileName>tcloud_mqtt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\app_task\tsp_task\src\tcloud_mqtt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3195,17 +3195,27 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>WebClient</GroupName>
+          <GroupName>version</GroupName>
           <Files>
             <File>
-              <FileName>webclient_file.c</FileName>
+              <FileName>dev_version.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\webclient-v2.2.0\src\webclient_file.c</FilePath>
+              <FilePath>applications\components\version\src\dev_version.c</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>WebClient</GroupName>
+          <Files>
             <File>
               <FileName>webclient.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\webclient-v2.2.0\src\webclient.c</FilePath>
+            </File>
+            <File>
+              <FileName>webclient_file.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\webclient-v2.2.0\src\webclient_file.c</FilePath>
             </File>
           </Files>
         </Group>

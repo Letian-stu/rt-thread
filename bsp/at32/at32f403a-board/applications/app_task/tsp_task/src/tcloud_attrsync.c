@@ -20,16 +20,16 @@ static cJSON* TCloudAtteGenerateJsonTable(tcloud_attrsync_t *self)
     }
 
     for (size_t i = 0; i < self->fdb_kv_num; i++) {
-        fdb_kv_table_t *entry = &g_kv_table[i];
+        fdb_kv_table_t *entry = &g_flash_kv_table[i];
         const char *key = entry->key;
 
-        if (rt_strncmp(key, TYPE_32, 4) == 0) 
+        if (rt_strncmp(key, O_TYPE_32, 4) == 0) 
         {
             rt_uint32_t value = 0;
             TFlashDbGetValue(entry->key, &value);
             cJSON_AddNumberToObject(root, key, value);
         } 
-        else if (rt_strncmp(key, TYPE_STR, 4) == 0) 
+        else if (rt_strncmp(key, O_TYPE_STR, 4) == 0) 
         {
             char *str_value = rt_malloc(entry->value_len+1);
             if(str_value)
@@ -63,7 +63,7 @@ int TCloudAtteGenerateDbTable(tcloud_attrsync_t *self, char *data)
         const char *key = item->string;
         if (!key) continue; 
 
-        if (strncmp(key, TYPE_32, 4) == 0) {
+        if (strncmp(key, O_TYPE_32, 4) == 0) {
             if (!cJSON_IsNumber(item)) {
                 LOG_W("Key '%s' is not a number, skip", key);
                 continue;
@@ -80,7 +80,7 @@ int TCloudAtteGenerateDbTable(tcloud_attrsync_t *self, char *data)
                 LOG_E("Failed to save U32 key: %s (err=%d)", key, ret);
             }
         } 
-        else if (strncmp(key, TYPE_STR, 4) == 0) 
+        else if (strncmp(key, O_TYPE_STR, 4) == 0) 
         {
             if (!cJSON_IsString(item)) 
             {
@@ -115,8 +115,8 @@ int TCloudAtteGenerateDbTable(tcloud_attrsync_t *self, char *data)
 
 void TCloudAttrSyncTableInit(tcloud_attrsync_t *self)
 {
-    self->kv_table = (fdb_kv_table_t *)g_kv_table;
-    self->fdb_kv_num = g_kv_num;
+    self->kv_table = (fdb_kv_table_t *)g_flash_kv_table;
+    self->fdb_kv_num = g_flash_kv_num;
     LOG_D("TCloud attr report num %d", self->fdb_kv_num);
 }
 

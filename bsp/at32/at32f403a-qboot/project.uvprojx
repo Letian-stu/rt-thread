@@ -439,24 +439,14 @@
           <GroupName>crclib</GroupName>
           <Files>
             <File>
-              <FileName>crc16.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\crclib-v1.02\src\crc16.c</FilePath>
-            </File>
-            <File>
               <FileName>crc32_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\crclib-v1.02\src\crc32_ex.c</FilePath>
             </File>
             <File>
-              <FileName>crc8_ex.c</FileName>
+              <FileName>crc16.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\crclib-v1.02\src\crc8_ex.c</FilePath>
-            </File>
-            <File>
-              <FileName>crc16_ex_sample.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\crclib-v1.02\src\crc16_ex_sample.c</FilePath>
+              <FilePath>packages\crclib-v1.02\src\crc16.c</FilePath>
             </File>
             <File>
               <FileName>crc32.c</FileName>
@@ -469,9 +459,19 @@
               <FilePath>packages\crclib-v1.02\src\crc8.c</FilePath>
             </File>
             <File>
+              <FileName>crc8_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\crclib-v1.02\src\crc8_ex.c</FilePath>
+            </File>
+            <File>
               <FileName>crc16_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\crclib-v1.02\src\crc16_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>crc16_ex_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\crclib-v1.02\src\crc16_ex_sample.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1486,19 +1486,19 @@
           <GroupName>Fal</GroupName>
           <Files>
             <File>
-              <FileName>fal_flash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fal\src\fal_flash.c</FilePath>
-            </File>
-            <File>
-              <FileName>fal_rtt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\fal\src\fal_rtt.c</FilePath>
-            </File>
-            <File>
               <FileName>fal.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\fal\src\fal.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal_partition.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\src\fal_partition.c</FilePath>
+            </File>
+            <File>
+              <FileName>fal_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\fal\src\fal_flash.c</FilePath>
             </File>
             <File>
               <FileName>fal_flash_sfud_port.c</FileName>
@@ -1506,9 +1506,9 @@
               <FilePath>..\..\..\components\fal\samples\porting\fal_flash_sfud_port.c</FilePath>
             </File>
             <File>
-              <FileName>fal_partition.c</FileName>
+              <FileName>fal_rtt.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\components\fal\src\fal_partition.c</FilePath>
+              <FilePath>..\..\..\components\fal\src\fal_rtt.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2614,12 +2614,22 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>port_fal</GroupName>
+          <Files>
+            <File>
+              <FileName>ram_fal_dev.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\porting\fal\src\ram_fal_dev.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>qboot</GroupName>
           <Files>
             <File>
-              <FileName>qboot.c</FileName>
+              <FileName>qboot_stm32.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\qboot-v1.06\src\qboot.c</FilePath>
+              <FilePath>packages\qboot-v1.06\src\qboot_stm32.c</FilePath>
             </File>
             <File>
               <FileName>qboot_quicklz.c</FileName>
@@ -2627,19 +2637,14 @@
               <FilePath>packages\qboot-v1.06\src\qboot_quicklz.c</FilePath>
             </File>
             <File>
-              <FileName>qboot_gzip.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\qboot-v1.06\src\qboot_gzip.c</FilePath>
-            </File>
-            <File>
-              <FileName>qboot_aes.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\qboot-v1.06\src\qboot_aes.c</FilePath>
-            </File>
-            <File>
               <FileName>qboot_fastlz.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\qboot-v1.06\src\qboot_fastlz.c</FilePath>
+            </File>
+            <File>
+              <FileName>qboot_gzip.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\qboot-v1.06\src\qboot_gzip.c</FilePath>
             </File>
             <File>
               <FileName>qboot_at32.c</FileName>
@@ -2647,9 +2652,14 @@
               <FilePath>packages\qboot-v1.06\src\qboot_at32.c</FilePath>
             </File>
             <File>
-              <FileName>qboot_stm32.c</FileName>
+              <FileName>qboot.c</FileName>
               <FileType>1</FileType>
-              <FilePath>packages\qboot-v1.06\src\qboot_stm32.c</FilePath>
+              <FilePath>packages\qboot-v1.06\src\qboot.c</FilePath>
+            </File>
+            <File>
+              <FileName>qboot_aes.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\qboot-v1.06\src\qboot_aes.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2657,14 +2667,14 @@
           <GroupName>quick_led</GroupName>
           <Files>
             <File>
-              <FileName>qled_sample.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>packages\quick_led-latest\src\qled_sample.c</FilePath>
-            </File>
-            <File>
               <FileName>qled.c</FileName>
               <FileType>1</FileType>
               <FilePath>packages\quick_led-latest\src\qled.c</FilePath>
+            </File>
+            <File>
+              <FileName>qled_sample.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>packages\quick_led-latest\src\qled_sample.c</FilePath>
             </File>
           </Files>
         </Group>

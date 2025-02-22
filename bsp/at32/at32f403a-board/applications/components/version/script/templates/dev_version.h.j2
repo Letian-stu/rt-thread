@@ -1,0 +1,21 @@
+#ifndef _DEV_VERSION_H_
+#define _DEV_VERSION_H_
+
+#include <stdint.h>
+
+typedef struct {
+    const char* date;
+    const char* author;
+    const char* version;
+    const char* change_type;
+    const char* description;
+} VersionEntry;
+
+const VersionEntry* get_version_history(void);
+
+uint8_t get_version_count(void);
+
+void log_version_info(void);
+
+#endif
+

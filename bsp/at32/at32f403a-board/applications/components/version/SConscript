@@ -6,6 +6,6 @@ src = Glob('./src/*.c')
 path = [cwd]
 path += [cwd + '/inc']
 
-group = DefineGroup('rfal_interface', src, depend = [], CPPPATH = path)
+group = DefineGroup('version', src, depend = [], CPPPATH = path)
 
 Return('group')

@@ -15,6 +15,8 @@
 #include "flashdb.h"
 #include "dfs_fs.h"
  
+#include "dev_version.h"
+
 #ifdef LOG_TAG 
 #define LOG_TAG "main"
 #endif
@@ -92,14 +94,6 @@ int dfs_mount_init(void)
 }
 INIT_ENV_EXPORT(dfs_mount_init);
 
-void show_version(void)
-{
-	#define HARDWAREVERSION "V1.0.0"
-	#define SOFTWAREVERSION "V1.0.0"
-	LOG_I("Hard Version %s", HARDWAREVERSION);
-	LOG_I("Soft Version %s", SOFTWAREVERSION);
-}
-
 #include "pmu_task.h"
 #include "pmu_task_manage.h"
 #include "task_msg_bus.h"
@@ -107,7 +101,7 @@ void show_version(void)
 
 int main(void)
 {
-	show_version();
+	log_version_info();
 	PmuTaskCreate(&g_pmu_task);
 	rt_uint32_t tick = 0;
 	while (1)

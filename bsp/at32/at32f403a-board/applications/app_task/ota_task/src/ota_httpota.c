@@ -211,13 +211,13 @@ void THttpOtaTaskRunOnce(tsp_httpota_t *self)
                 if(self->ota_err_time > 3)
                 {
                     self->ota_err_time = 0;
-                    TFlashDbSetValue(U32_START_OTA, 0, sizeof(uint32_t));
+                    TFlashDbSetValue(O_U32_START_OTA, 0, sizeof(uint32_t));
                     LOG_I("http ota url update error timeover url %s", http_ota_state, self->http_ota_url);
                 }
-                TFlashDbGetValue(U32_START_OTA, &http_ota_state);
+                TFlashDbGetValue(O_U32_START_OTA, &http_ota_state);
                 if(http_ota_state == 1)
                 {
-                    TFlashDbGetValue(STR_HTTPOTA_URL, self->http_ota_url);
+                    TFlashDbGetValue(O_STR_HTTPOTA_URL, self->http_ota_url);
                     LOG_I("http ota url update %d url %s", http_ota_state, self->http_ota_url);
                     self->ota_fsm = THTTP_OTA_FSM_UPDATE_URL;
                 }
